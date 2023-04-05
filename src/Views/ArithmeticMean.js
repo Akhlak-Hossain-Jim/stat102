@@ -5,7 +5,7 @@ import ArithmeticMeanComponent from "../Components/ArithmeticMeanComponent";
 export default function ArithmeticMean({ data }) {
   return (
     <Container>
-      <h1>Arithmetic Mean{data.length > 1 && "s"}:</h1>
+      <h1>Arithmetic Mean{data && data.length > 1 && "s"}:</h1>
       {data &&
         Array.isArray(data) &&
         data.length > 0 &&
