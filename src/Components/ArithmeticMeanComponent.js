@@ -48,7 +48,7 @@ export default function ArithmeticMeanComponent({ title, data }) {
           </div>
           {
             {
-              sample: (
+              population: (
                 <div className="calculation">
                   <div className="mathematical_line">
                     <var>&micro;</var>
@@ -80,7 +80,7 @@ export default function ArithmeticMeanComponent({ title, data }) {
                   </div>
                 </div>
               ),
-              population: (
+              sample: (
                 <div className="calculation">
                   <div className="mathematical_line">
                     <var>x_bar</var>
@@ -114,6 +114,20 @@ export default function ArithmeticMeanComponent({ title, data }) {
               ),
             }[NType]
           }
+          <p>
+            <u>Comment:</u> The estimated average of {title} is{" "}
+            {(
+              data.reduce((a, b) => Number(a) + Number(b), 0) / data.length
+            ).toFixed(2)}
+            .
+          </p>
+          <p className="note">
+            <u>Note:</u>
+            <ul>
+              <li>Calculation is considering all values.</li>
+              <li>Calculation is manipulated by extreme value/s.</li>
+            </ul>
+          </p>
         </div>
       ) : (
         <h1 className="comment">
@@ -173,6 +187,11 @@ const Container = styled.div`
         display: flex;
         align-items: center;
         gap: 8px;
+      }
+    }
+    & > .note {
+      & > ul {
+        padding: 12px 32px;
       }
     }
   }
