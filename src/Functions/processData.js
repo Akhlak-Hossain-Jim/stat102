@@ -46,7 +46,7 @@ export function makeFrequencyObj(isNum = true, data) {
     let classArr = [Math.floor(min / 5) * 5];
     for (let i = 1; i < nOfClass; i++) {
       let x = classArr[i - 1] + 10;
-      if (x > Math.round(max / 5) * 5) break;
+      if (x > Math.round(max / 5) * 5 + 10) break;
       else classArr.push(x);
     }
     for (let i = 0; i < classArr.length - 1; i++) {
@@ -62,6 +62,19 @@ export function makeFrequencyObj(isNum = true, data) {
     for (let el of SET) {
       let arr = data.filter((m) => el === m);
       res.push({ class: el, count: arr.length, items: arr });
+    }
+  }
+  return res;
+}
+
+export function dataIsNumber(data) {
+  let res;
+  for (let el of data) {
+    if (isNaN(el)) {
+      res = false;
+      break;
+    } else {
+      res = true;
     }
   }
   return res;
