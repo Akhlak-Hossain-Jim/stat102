@@ -72,11 +72,13 @@ export default function HistogramComponent({ title, data }) {
                 <div className="bar_box">
                   {isNum && (
                     <div
-                      style={{
-                        width: `${
-                          100 / (Math.round(Sorted[0].count / 5) + 1)
-                        }%`,
-                      }}
+                      style={
+                        {
+                          // width: `${
+                          //   100 / (Math.round(Sorted[0].count / 5) + 1)
+                          // }%`,
+                        }
+                      }
                     ></div>
                   )}
                   {React.Children.toArray(
@@ -88,9 +90,7 @@ export default function HistogramComponent({ title, data }) {
                               ((Math.round(Sorted[0].count / 5) + 1) * 5)) *
                             100
                           }%`,
-                          width: `${
-                            100 / (Math.round(Sorted[0].count / 5) + 1)
-                          }%`,
+                          // width: `${Math.round(Sorted[0].count / 5) + 1}%`,
                         }}
                       >
                         {el.count}
@@ -102,22 +102,22 @@ export default function HistogramComponent({ title, data }) {
                 <div className="x_label">
                   {isNum && (
                     <div
-                      style={{
-                        width: `${
-                          100 / (Math.round(Sorted[0].count / 5) + 1)
-                        }%`,
-                      }}
+                    // style={{
+                    //   width: `${
+                    //     100 / (Math.round(Sorted[0].count / 5) + 1)
+                    //   }%`,
+                    // }}
                     />
                   )}
                   {React.Children.toArray(
                     Frequency.map((el, index) =>
                       isNum ? (
                         <div
-                          style={{
-                            width: `${
-                              100 / (Math.round(Sorted[0].count / 5) + 1)
-                            }%`,
-                          }}
+                        // style={{
+                        //   width: `${
+                        //     100 / (Math.round(Sorted[0].count / 5) + 1)
+                        //   }%`,
+                        // }}
                         >
                           <span>{el.class.split("-")[0]}</span>
                           {index + 1 === Frequency.length && (
@@ -129,11 +129,11 @@ export default function HistogramComponent({ title, data }) {
                       ) : (
                         <div
                           className="not_num"
-                          style={{
-                            width: `${
-                              100 / (Math.round(Sorted[0].count / 5) + 1)
-                            }%`,
-                          }}
+                          // style={{
+                          //   width: `${
+                          //     100 / (Math.round(Sorted[0].count / 5) + 1)
+                          //   }%`,
+                          // }}
                         >
                           <p>{el.class}</p>
                         </div>
@@ -204,6 +204,7 @@ const Container = styled.div`
           align-items: center;
           justify-content: center;
           border: 1px solid var(--light);
+          flex: 1;
         }
       }
       & > .x_label {
@@ -214,6 +215,7 @@ const Container = styled.div`
           display: flex;
           flex-direction: column;
           position: relative;
+          flex: 1;
           & > span {
             position: absolute;
             top: 4px;
