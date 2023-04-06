@@ -18,8 +18,10 @@ export default function ContentContainer({ pushData, children }) {
             name="AddData"
             id="addData"
             onChange={(e) => setData(e.target.value)}
-            placeholder="Put either comma(', ') separated values or space(' ')
-          separated value or in new lines, But don't put data in combination of them"
+            placeholder="Input format:
+            Data title: data, data, data, ...
+            Data title: data, data, data, ...
+            ..."
             required
           />
         </>
