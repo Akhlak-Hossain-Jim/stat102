@@ -43,7 +43,7 @@ export default function MedianModeComponent({ calculate, title, data }) {
   console.log(typeof ((data.length + 1) / 2));
 
   return {
-    mode: SET && Modes && (
+    mode: SET && (
       <Container>
         <h1 className="title">Mode of {title && title}:</h1>
         <div className="am_con">
@@ -51,7 +51,8 @@ export default function MedianModeComponent({ calculate, title, data }) {
             <u>Comment:</u>{" "}
             {SET.length === data.length
               ? `There is no mode in the "${title}" data set. All values are unique`
-              : `The most frequent ${
+              : Modes &&
+                `The most frequent ${
                   Modes.length > 1
                     ? `values from the data set "${title}" are`
                     : `value from the data set "${title}" is`
@@ -61,91 +62,93 @@ export default function MedianModeComponent({ calculate, title, data }) {
         </div>
       </Container>
     ),
-    median: SortedValue && Median && (
+    median: SortedValue && (
       <Container>
         <h1 className="title">Median of {title && title}:</h1>
         {isNum ? (
-          <div className="am_con">
-            <div className="calculation">
-              <div className="mathematical_line">
-                <var>Median</var>
-                <var> = </var>
-                <var>
-                  (n + 1)&divide;2 <sup>th value</sup>
-                </var>
-              </div>
-              <div className="mathematical_line">
-                <var>Median</var>
-                <var> = </var>
-                <var>
-                  ({data.length} + 1)&divide;2 <sup>th value</sup>
-                </var>
-              </div>
-              <div className="mathematical_line">
-                <var>Median</var>
-                <var> = </var>
-                <var>
-                  {data.length + 1}&divide;2 <sup>th value</sup>
-                </var>
-              </div>
-              <div className="mathematical_line">
-                <var>Median</var>
-                <var> = </var>
-                <var>
-                  {(data.length + 1) / 2} <sup>th value</sup>
-                </var>
-              </div>
-              {Number.isInteger((SortedValue.length + 1) / 2) ? (
+          Median && (
+            <div className="am_con">
+              <div className="calculation">
                 <div className="mathematical_line">
                   <var>Median</var>
                   <var> = </var>
-                  <var>{Median}</var>
+                  <var>
+                    (n + 1)&divide;2 <sup>th value</sup>
+                  </var>
                 </div>
-              ) : (
-                <>
-                  <div className="mathematical_line">
-                    <var>Median</var>
-                    <var> = </var>
-                    <var>
-                      ({Math.floor((data.length + 1) / 2)}
-                      <sup>th value</sup>+
-                      {Math.floor((data.length + 1) / 2) + 1}
-                      <sup>th value</sup>)&divide;2
-                    </var>
-                  </div>
-                  <div className="mathematical_line">
-                    <var>Median</var>
-                    <var> = </var>
-                    <var>
-                      ({SortedValue[Math.floor((data.length + 1) / 2)]}+
-                      {SortedValue[Math.floor((data.length + 1) / 2) + 1]}
-                      )&divide;2
-                    </var>
-                  </div>
+                <div className="mathematical_line">
+                  <var>Median</var>
+                  <var> = </var>
+                  <var>
+                    ({data.length} + 1)&divide;2 <sup>th value</sup>
+                  </var>
+                </div>
+                <div className="mathematical_line">
+                  <var>Median</var>
+                  <var> = </var>
+                  <var>
+                    {data.length + 1}&divide;2 <sup>th value</sup>
+                  </var>
+                </div>
+                <div className="mathematical_line">
+                  <var>Median</var>
+                  <var> = </var>
+                  <var>
+                    {(data.length + 1) / 2} <sup>th value</sup>
+                  </var>
+                </div>
+                {Number.isInteger((SortedValue.length + 1) / 2) ? (
                   <div className="mathematical_line">
                     <var>Median</var>
                     <var> = </var>
                     <var>{Median}</var>
                   </div>
-                </>
-              )}
+                ) : (
+                  <>
+                    <div className="mathematical_line">
+                      <var>Median</var>
+                      <var> = </var>
+                      <var>
+                        ({Math.floor((data.length + 1) / 2)}
+                        <sup>th value</sup>+
+                        {Math.floor((data.length + 1) / 2) + 1}
+                        <sup>th value</sup>)&divide;2
+                      </var>
+                    </div>
+                    <div className="mathematical_line">
+                      <var>Median</var>
+                      <var> = </var>
+                      <var>
+                        ({SortedValue[Math.floor((data.length + 1) / 2)]}+
+                        {SortedValue[Math.floor((data.length + 1) / 2) + 1]}
+                        )&divide;2
+                      </var>
+                    </div>
+                    <div className="mathematical_line">
+                      <var>Median</var>
+                      <var> = </var>
+                      <var>{Median}</var>
+                    </div>
+                  </>
+                )}
+              </div>
+              <p>
+                <u>Comment:</u> The estimated average of {title} is {Median}.
+              </p>
+              <p>or,</p>
+              <p>
+                <u>Comment:</u> There is 50% of data in {title} is less than{" "}
+                {Median} and rest 50% is more than that.
+              </p>
+              <p className="note">
+                <u>Note:</u>
+                <ul>
+                  <li>Calculation is not considering all values.</li>
+                  <li>Calculation is not manipulated by extreme value/s.</li>
+                </ul>
+              </p>
             </div>
-            <p>
-              <u>Comment:</u> The estimated average of {title} is {Median}.
-            </p>
-            <p>or,</p>
-            <p>
-              <u>Comment:</u> There is 50% of data in {title} is less than{" "}
-              {Median} and rest 50% is more than that.
-            </p>
-            <p className="note">
-              <u>Note:</u>
-              <ul>
-                <li>Calculation is not considering all values.</li>
-                <li>Calculation is not manipulated by extreme value/s.</li>
-              </ul>
-            </p>
-          </div>
+          )
         ) : (
           <h1 className="comment">
             Can not perform <strong>Median</strong> on "{title}" data set, as
