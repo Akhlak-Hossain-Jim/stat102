@@ -267,6 +267,18 @@ export default function GeometricMean({ data }) {
   return (
     <Container>
       <h1>Geometric Mean</h1>
+      <p>
+        <u>Use:</u>
+        <ol>
+          <li>Non-linear growth.</li>
+          <li>To calculate the percentage of change over the time period.</li>
+          <li>If the data is in percentage, to calculate the average.</li>
+        </ol>
+        <span className="note">
+          <u>Note:</u> Remove all data from the input box to see the accepted
+          data input format.
+        </span>
+      </p>
       {data &&
         Array.isArray(data) &&
         data.length > 0 &&
@@ -277,7 +289,22 @@ export default function GeometricMean({ data }) {
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  & > p {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    gap: 12px;
+    & > ol {
+      padding-left: 24px;
+    }
+    & > .note {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--light-green);
+    }
+  }
+`;
 const Content = styled.div`
   width: 100%;
   overflow-x: auto;
