@@ -1,8 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function ContentContainer({ pushData, children }) {
+export default function ContentContainer({ pushData, children, tab }) {
   const [Data, setData] = useState();
+
+  const placeholder =
+    tab < 2
+      ? `Input format:
+Data title: data, data, data, ...
+Data title: data, data, data, ...
+...`
+      : tab < 5
+      ? `Input format: (Must be numeric value)
+Data title: data, data, data, ...
+Data title: data, data, data, ...
+...`
+      : tab === 5
+      ? `Input format: (Must be numeric value)
+Either:
+Data title: Initial value(ie: 100), New value(ie:110), Time period
+Or:
+Data title: 1% profit, 3% lose, ...`
+      : ``;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,19 +31,14 @@ export default function ContentContainer({ pushData, children }) {
   return (
     <Container>
       <form className="add_data_container" onSubmit={handleSubmit}>
-        <>
-          <label htmlFor="AddData">Enter your data*</label>
-          <textarea
-            name="AddData"
-            id="addData"
-            onChange={(e) => setData(e.target.value)}
-            placeholder="Input format:
-            Data title: data, data, data, ...
-            Data title: data, data, data, ...
-            ..."
-            required
-          />
-        </>
+        <label htmlFor="AddData">Enter your data*</label>
+        <textarea
+          name="AddData"
+          id="addData"
+          onChange={(e) => setData(e.target.value)}
+          placeholder={placeholder}
+          required
+        />
         <div className="form_group">
           <button type="submit">Add Data</button>
         </div>
@@ -47,6 +61,9 @@ const Container = styled.main`
     flex-direction: column;
     gap: 18px;
     & > textarea {
+      resize: none;
+      user-select: text;
+      font-size: 1.1rem;
       background-color: transparent;
       height: 160px;
       color: var(--light);
