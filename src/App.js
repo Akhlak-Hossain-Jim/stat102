@@ -5,46 +5,84 @@ import ContentContainer from "./Components/ContentContainer";
 import FrequencyTable from "./Views/FrequencyTable";
 import { process } from "./Functions/processData";
 import HistoGram from "./Views/HistoGram";
+import ArithmeticMean from "./Views/ArithmeticMean";
+import Median from "./Views/Median";
+import Mode from "./Views/Mode";
+import GeometricMean from "./Views/GeometricMean";
+import HarmonicMean from "./Views/HarmonicMean";
+import RandomGen from "./Views/RandomGen";
 
 export default function App() {
   const [DATA, setDATA] = useState();
   const [ProcessedDATA, setProcessedDATA] = useState();
 
   const NAVs = [
-    // {
-    //   id: 1,
-    //   name: "Identify Data Type",
-    //   component: "",
-    // },
+    {
+      name: "Random Data Generator",
+      component: <RandomGen />,
+    },
     {
       name: "Frequency Table",
       component: <FrequencyTable data={ProcessedDATA} />,
     },
     {
-      name: "Histogram",
+      name: "Graphical Presentation",
       component: <HistoGram data={ProcessedDATA} />,
     },
     {
       name: "Arithmetic Mean",
-      component: <HistoGram data={ProcessedDATA} />,
+      component: <ArithmeticMean data={ProcessedDATA} />,
     },
     {
       name: "Median",
-      component: <HistoGram data={ProcessedDATA} />,
+      component: <Median data={ProcessedDATA} />,
     },
     {
       name: "Mode",
-      component: <HistoGram data={ProcessedDATA} />,
+      component: <Mode data={ProcessedDATA} />,
     },
     {
       name: "GeoMetric Mean",
-      component: <HistoGram data={ProcessedDATA} />,
+      component: <GeometricMean data={ProcessedDATA} />,
     },
     {
       name: "Harmonic Mean",
-      component: <HistoGram data={ProcessedDATA} />,
+      component: <HarmonicMean data={ProcessedDATA} />,
     },
   ];
+
+  const NAVsP = {
+    frequencyTable: {
+      name: "Frequency Table",
+      handle: "frequencyTable",
+      component: <FrequencyTable data={ProcessedDATA} />,
+    },
+    graphicalPresentation: {
+      name: "Graphical Presentation",
+      handle: "graphicalPresentation",
+      component: <HistoGram data={ProcessedDATA} />,
+    },
+    as: {
+      name: "Arithmetic Mean",
+      component: <ArithmeticMean data={ProcessedDATA} />,
+    },
+    has: {
+      name: "Median",
+      component: <Median data={ProcessedDATA} />,
+    },
+    nas: {
+      name: "Mode",
+      component: <Mode data={ProcessedDATA} />,
+    },
+    ljas: {
+      name: "GeoMetric Mean",
+      component: <GeometricMean data={ProcessedDATA} />,
+    },
+    al: {
+      name: "Harmonic Mean",
+      component: <HarmonicMean data={ProcessedDATA} />,
+    },
+  };
 
   const [ActiveNav, setActiveNav] = useState(0);
 
@@ -56,9 +94,13 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
-        {NAVs[ActiveNav].component}
-      </ContentContainer>
+      {ActiveNav !== 0 ? (
+        <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
+          {NAVs[ActiveNav].component}
+        </ContentContainer>
+      ) : (
+        NAVs[ActiveNav].component
+      )}
     </Container>
   );
 }
