@@ -113,7 +113,7 @@ export default function RandomGen() {
             onChange={(e) => setCalc(e.target.value)}
           >
             <option value="" selected disabled>
-              Choose the calculation you intend to do with the data.
+              Choose Calculation type
             </option>
             {React.Children.toArray(
               CalcOpt.map((option) => <option value={option}>{option}</option>)
