@@ -17,7 +17,7 @@ export default function RandomGen() {
   }, [Calc, DataType]);
 
   const CalcOpt = ["Geometric Mean", "Others"];
-  const DataTypeNormal = ["Numeric", "Categorical"];
+  const DataTypeNormal = ["Numerical", "Categorical"];
   const DataTypeGM = ["Value with time interval", "% Profit/Lose Value"];
 
   function makeNumberArray(str) {
@@ -173,7 +173,7 @@ export default function RandomGen() {
                 />
               </div>
             ),
-            Numeric: (
+            Numerical: (
               <div className="field">
                 <label htmlFor="Range">Choose Range:</label>
                 <input
