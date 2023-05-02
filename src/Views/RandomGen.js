@@ -5,8 +5,8 @@ import styled from "styled-components";
 export default function RandomGen() {
   const [Title, setTitle] = useState();
   const [Calc, setCalc] = useState();
-  const [Range, setRange] = useState();
-  const [RangeStr, setRangeStr] = useState();
+  const [Range, setRange] = useState("67-92");
+  const [RangeStr, setRangeStr] = useState("A+, A-, B+, B-, AB+, AB-,O+,O-");
   const [DataType, setDataType] = useState();
   const [Length, setLength] = useState();
   const [Data, setData] = useState();
@@ -20,7 +20,7 @@ export default function RandomGen() {
   const DataTypeNormal = ["Numeric", "Categorical"];
   const DataTypeGM = ["Value with time interval", "% Profit/Lose Value"];
 
-  function makeArray(str) {
+  function makeNumberArray(str) {
     let arr = str
       .split("-")
       .map((el) => el.replaceAll(" ", ""))
@@ -30,6 +30,14 @@ export default function RandomGen() {
       array.push(i);
     }
     return array;
+  }
+
+  function makeStringArray(str) {
+    let arr = str
+      .split(",")
+      .map((el) => el.replaceAll(" ", ""))
+      .filter((el) => el !== "");
+    return arr;
   }
 
   function RandomGen(n, arr) {
@@ -55,7 +63,7 @@ export default function RandomGen() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let string = "";
-    string += `${Title}: `;
+    string += `${Title.replaceAll(":", "")}: `;
     let dt =
       Calc === "Geometric Mean" && DataType === "Value with time interval"
         ? [
@@ -65,8 +73,10 @@ export default function RandomGen() {
           ].join(", ")
         : Calc === "Geometric Mean" && DataType === "% Profit/Lose Value"
         ? profitLose(Length)
-        : Calc === "Others"
-        ? RandomGen(Length, makeArray(Range))
+        : Calc === "Others" && DataType === "Numerical"
+        ? RandomGen(Length, makeNumberArray(Range))
+        : Calc === "Others" && DataType === "Categorical"
+        ? RandomGen(Length, makeStringArray(RangeStr))
         : "";
     string += dt;
     setData(string);
@@ -116,7 +126,10 @@ export default function RandomGen() {
             <select
               required
               name="Type"
-              onChange={(e) => setDataType(e.target.value)}
+              onChange={(e) => {
+                setDataType(e.target.value);
+                setRange();
+              }}
             >
               <option value="" selected disabled>
                 Choose data category
@@ -145,32 +158,36 @@ export default function RandomGen() {
             />
           </div>
         </div>
-        {DataType === "Categorical" ? (
-          <div className="field">
-            <label htmlFor="ChooseFrom">Choose random from:</label>
-            <input
-              required
-              type="text"
-              name="ChooseFrom"
-              placeholder="A+, A-, AB+, AB-, ..."
-              onChange={(e) => setRangeStr(e.target.value)}
-            />
-          </div>
-        ) : DataType === "Numeric" ? (
-          <div className="field">
-            <label htmlFor="Range">Choose Range:</label>
-            <input
-              required
-              type="text"
-              name="Range"
-              placeholder="1-100"
-              value={Range}
-              onChange={(e) => setRange(e.target.value)}
-            />
-          </div>
-        ) : (
-          ""
-        )}
+        {
+          {
+            Categorical: (
+              <div className="field">
+                <label htmlFor="ChooseFromArr">Choose random from:</label>
+                <input
+                  required
+                  type="text"
+                  name="ChooseFromArr"
+                  value={RangeStr}
+                  placeholder="A+, A-, AB+, AB-, ..."
+                  onChange={(e) => setRangeStr(e.target.value)}
+                />
+              </div>
+            ),
+            Numeric: (
+              <div className="field">
+                <label htmlFor="Range">Choose Range:</label>
+                <input
+                  required
+                  type="text"
+                  name="Range"
+                  placeholder="1-100"
+                  value={Range}
+                  onChange={(e) => setRange(e.target.value)}
+                />
+              </div>
+            ),
+          }[DataType]
+        }
         <div className="buttons">
           <button type="submit">Generate</button>
           <button onClick={handleReset}>Reset</button>
