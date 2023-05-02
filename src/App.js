@@ -111,4 +111,7 @@ const Container = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 3fr 9fr;
+  @media (max-width: 548px) {
+    grid-template-columns: 1fr;
+  }
 `;
