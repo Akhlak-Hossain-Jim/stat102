@@ -52,11 +52,12 @@ const Container = styled.aside`
   padding: 24px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  .logo {
+  & > .logo {
     width: 100px;
     aspect-ratio: 100/46;
     margin: 0 auto 24px;
+    overflow: hidden;
+    display: flex;
   }
   & > button.nav_item {
     border: none;
@@ -66,6 +67,7 @@ const Container = styled.aside`
     text-align: start;
     color: var(--green);
     padding: 12px 0;
+    cursor: pointer;
     &.active {
       color: var(--light);
     }
@@ -77,6 +79,8 @@ const Container = styled.aside`
       position: absolute;
       display: flex;
       background-color: var(--dark);
+      height: 100dvh;
+      overflow-y: auto;
     }
   }
 `;
@@ -92,6 +96,7 @@ const Ham = styled.button`
   box-shadow: var(--dark-shadow-out);
   padding: 24px 10px;
   border-radius: 50%;
+  height: max-content !important;
   @media (min-width: 549px) {
     display: none;
   }
