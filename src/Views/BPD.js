@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Summary from "../Components/Summary";
-import { Bin, nCr } from "../Functions/math";
+import { Bin } from "../Functions/math";
 import { makeNumberArray } from "../Functions/gen";
 
 export default function BPD() {
   const title = "More info about Binomial Probability Distribution";
   const body = (
-    <table>
-      <thead>
-        <tr>
-          <th>Data Type</th>
-          <th>Limit</th>
-          <th>Parameter</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Discrete</td>
-          <td>[0, n]</td>
-          <td>n, p</td>
-        </tr>
-      </tbody>
-    </table>
+    <>
+      <p>In short: X ~ Bin(n, p)</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Limit</th>
+            <th>Parameter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Discrete</td>
+            <td>[0, n]</td>
+            <td>n, p</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
   );
 
   const [N, setN] = useState();
@@ -191,313 +194,301 @@ export default function BPD() {
 
       {CanCalc &&
         Res &&
-        {
-          1: (
-            <div className="math">
-              <var>
-                P(x &ge; {Xn}) ={" "}
+        (Type === 1 ? (
+          <div className="math">
+            <var>
+              P(x &ge; {Xn}) ={" "}
+              {React.Children.toArray(
+                XExp.map((x, i) => (
+                  <>
+                    f({x}) {i !== XExp.length - 1 && "+ "}
+                  </>
+                ))
+              )}
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &ge; {Xn}) = &nbsp;</span>
+              <span>
                 {React.Children.toArray(
                   XExp.map((x, i) => (
                     <>
-                      f({x}) {i !== XExp.length - 1 && "+ "}
+                      <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
+                      <sup>{x}</sup> &times; ( 1 - {P}){" "}
+                      <sup>
+                        ({N}-{x})
+                      </sup>{" "}
+                      {i !== XExp.length - 1 && "+ "}
                     </>
                   ))
                 )}
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &ge; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
-                        <sup>{x}</sup> &times; ( 1 - {P}){" "}
-                        <sup>
-                          ({N}-{x})
-                        </sup>{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &ge; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        {Bin(N, P, x).toFixed(4)}{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var>
-                P(x &ge; {Xn}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-          2: (
-            <div className="math">
-              <var>
-                P(x &le; {Xn}) ={" "}
+              </span>
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &ge; {Xn}) = &nbsp;</span>
+              <span>
                 {React.Children.toArray(
                   XExp.map((x, i) => (
                     <>
-                      f({x}) {i !== XExp.length - 1 && "+ "}
+                      {Bin(N, P, x).toFixed(4)} {i !== XExp.length - 1 && "+ "}
                     </>
                   ))
                 )}
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &le; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
-                        <sup>{x}</sup> &times; ( 1 - {P}){" "}
-                        <sup>
-                          ({N}-{x})
-                        </sup>{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &ge; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        {Bin(N, P, x).toFixed(4)}{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var>
-                P(x &le; {Xn}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-          3: (
-            <div className="math">
-              <var>
-                P(x &gt; {Xn}) ={" "}
+              </span>
+            </var>
+            <var>
+              P(x &ge; {Xn}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : Type === 2 ? (
+          <div className="math">
+            <var>
+              P(x &le; {Xn}) ={" "}
+              {React.Children.toArray(
+                XExp.map((x, i) => (
+                  <>
+                    f({x}) {i !== XExp.length - 1 && "+ "}
+                  </>
+                ))
+              )}
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &le; {Xn}) = &nbsp;</span>
+              <span>
                 {React.Children.toArray(
                   XExp.map((x, i) => (
                     <>
-                      f({x}) {i !== XExp.length - 1 && "+ "}
+                      <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
+                      <sup>{x}</sup> &times; ( 1 - {P}){" "}
+                      <sup>
+                        ({N}-{x})
+                      </sup>{" "}
+                      {i !== XExp.length - 1 && "+ "}
                     </>
                   ))
                 )}
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &gt; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
-                        <sup>{x}</sup> &times; ( 1 - {P}){" "}
-                        <sup>
-                          ({N}-{x})
-                        </sup>{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &gt; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        {Bin(N, P, x).toFixed(4)}{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var>
-                P(x &gt; {Xn}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-          4: (
-            <div className="math">
-              <var>
-                P(x &lt; {Xn}) ={" "}
+              </span>
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &ge; {Xn}) = &nbsp;</span>
+              <span>
                 {React.Children.toArray(
                   XExp.map((x, i) => (
                     <>
-                      f({x}) {i !== XExp.length - 1 && "+ "}
+                      {Bin(N, P, x).toFixed(4)} {i !== XExp.length - 1 && "+ "}
                     </>
                   ))
                 )}
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &lt; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
-                        <sup>{x}</sup> &times; ( 1 - {P}){" "}
-                        <sup>
-                          ({N}-{x})
-                        </sup>{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">P(x &lt; {Xn}) = &nbsp;</span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        {Bin(N, P, x).toFixed(4)}{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var>
-                P(x &lt; {Xn}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-          5: (
-            <div className="math">
-              <var>
-                P(x={XExp}) = f({XExp}) = <sup>{N}</sup>C<sub>{XExp}</sub>{" "}
-                &times; {P}
-                <sup>{XExp}</sup> &times; ( 1 - {P}){" "}
-                <sup>
-                  ({N}-{XExp})
-                </sup>
-              </var>
-              <var>
-                P(x={XExp}) = f({XExp}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-          6: (
-            <div className="math">
-              <var>
-                P({Xn} &le; x &le; {Yn}) ={" "}
+              </span>
+            </var>
+            <var>
+              P(x &le; {Xn}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : Type === 3 ? (
+          <div className="math">
+            <var>
+              P(x &gt; {Xn}) ={" "}
+              {React.Children.toArray(
+                XExp.map((x, i) => (
+                  <>
+                    f({x}) {i !== XExp.length - 1 && "+ "}
+                  </>
+                ))
+              )}
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &gt; {Xn}) = &nbsp;</span>
+              <span>
                 {React.Children.toArray(
                   XExp.map((x, i) => (
                     <>
-                      f({x}) {i !== XExp.length - 1 && "+ "}
+                      <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
+                      <sup>{x}</sup> &times; ( 1 - {P}){" "}
+                      <sup>
+                        ({N}-{x})
+                      </sup>{" "}
+                      {i !== XExp.length - 1 && "+ "}
                     </>
                   ))
                 )}
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">
-                  P({Xn} &le; x &le; {Yn}) = &nbsp;
-                </span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
-                        <sup>{x}</sup> &times; ( 1 - {P}){" "}
-                        <sup>
-                          ({N}-{x})
-                        </sup>{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">
-                  P({Xn} &le; x &le; {Yn}) = &nbsp;
-                </span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        {Bin(N, P, x).toFixed(4)}{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var>
-                P({Xn} &le; x &le; {Yn}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-          7: (
-            <div className="math">
-              <var>
-                P({Xn} &lt; x &lt; {Yn}) ={" "}
+              </span>
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &gt; {Xn}) = &nbsp;</span>
+              <span>
                 {React.Children.toArray(
                   XExp.map((x, i) => (
                     <>
-                      f({x}) {i !== XExp.length - 1 && "+ "}
+                      {Bin(N, P, x).toFixed(4)} {i !== XExp.length - 1 && "+ "}
                     </>
                   ))
                 )}
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">
-                  P({Xn} &lt; x &lt; {Yn}) = &nbsp;
-                </span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
-                        <sup>{x}</sup> &times; ( 1 - {P}){" "}
-                        <sup>
-                          ({N}-{x})
-                        </sup>{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var className="d-flex align-items-center ">
-                <span className="text-nowrap">
-                  P({Xn} &lt; x &lt; {Yn}) = &nbsp;
-                </span>
-                <span>
-                  {React.Children.toArray(
-                    XExp.map((x, i) => (
-                      <>
-                        {Bin(N, P, x).toFixed(4)}{" "}
-                        {i !== XExp.length - 1 && "+ "}
-                      </>
-                    ))
-                  )}
-                </span>
-              </var>
-              <var>
-                P({Xn} &lt; x &lt; {Yn}) = {Res.toFixed(4)}
-              </var>
-            </div>
-          ),
-        }[Type]}
+              </span>
+            </var>
+            <var>
+              P(x &gt; {Xn}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : Type === 4 ? (
+          <div className="math">
+            <var>
+              P(x &lt; {Xn}) ={" "}
+              {React.Children.toArray(
+                XExp.map((x, i) => (
+                  <>
+                    f({x}) {i !== XExp.length - 1 && "+ "}
+                  </>
+                ))
+              )}
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &lt; {Xn}) = &nbsp;</span>
+              <span>
+                {React.Children.toArray(
+                  XExp.map((x, i) => (
+                    <>
+                      <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
+                      <sup>{x}</sup> &times; ( 1 - {P}){" "}
+                      <sup>
+                        ({N}-{x})
+                      </sup>{" "}
+                      {i !== XExp.length - 1 && "+ "}
+                    </>
+                  ))
+                )}
+              </span>
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">P(x &lt; {Xn}) = &nbsp;</span>
+              <span>
+                {React.Children.toArray(
+                  XExp.map((x, i) => (
+                    <>
+                      {Bin(N, P, x).toFixed(4)} {i !== XExp.length - 1 && "+ "}
+                    </>
+                  ))
+                )}
+              </span>
+            </var>
+            <var>
+              P(x &lt; {Xn}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : Type === 5 ? (
+          <div className="math">
+            <var>
+              P(x={XExp}) = f({XExp}) = <sup>{N}</sup>C<sub>{XExp}</sub> &times;{" "}
+              {P}
+              <sup>{XExp}</sup> &times; ( 1 - {P}){" "}
+              <sup>
+                ({N}-{XExp})
+              </sup>
+            </var>
+            <var>
+              P(x={XExp}) = f({XExp}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : Type === 6 ? (
+          <div className="math">
+            <var>
+              P({Xn} &le; x &le; {Yn}) ={" "}
+              {React.Children.toArray(
+                XExp.map((x, i) => (
+                  <>
+                    f({x}) {i !== XExp.length - 1 && "+ "}
+                  </>
+                ))
+              )}
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">
+                P({Xn} &le; x &le; {Yn}) = &nbsp;
+              </span>
+              <span>
+                {React.Children.toArray(
+                  XExp.map((x, i) => (
+                    <>
+                      <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
+                      <sup>{x}</sup> &times; ( 1 - {P}){" "}
+                      <sup>
+                        ({N}-{x})
+                      </sup>{" "}
+                      {i !== XExp.length - 1 && "+ "}
+                    </>
+                  ))
+                )}
+              </span>
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">
+                P({Xn} &le; x &le; {Yn}) = &nbsp;
+              </span>
+              <span>
+                {React.Children.toArray(
+                  XExp.map((x, i) => (
+                    <>
+                      {Bin(N, P, x).toFixed(4)} {i !== XExp.length - 1 && "+ "}
+                    </>
+                  ))
+                )}
+              </span>
+            </var>
+            <var>
+              P({Xn} &le; x &le; {Yn}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : Type === 7 ? (
+          <div className="math">
+            <var>
+              P({Xn} &lt; x &lt; {Yn}) ={" "}
+              {React.Children.toArray(
+                XExp.map((x, i) => (
+                  <>
+                    f({x}) {i !== XExp.length - 1 && "+ "}
+                  </>
+                ))
+              )}
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">
+                P({Xn} &lt; x &lt; {Yn}) = &nbsp;
+              </span>
+              <span>
+                {React.Children.toArray(
+                  XExp.map((x, i) => (
+                    <>
+                      <sup>{N}</sup>C<sub>{x}</sub> &times; {P}
+                      <sup>{x}</sup> &times; ( 1 - {P}){" "}
+                      <sup>
+                        ({N}-{x})
+                      </sup>{" "}
+                      {i !== XExp.length - 1 && "+ "}
+                    </>
+                  ))
+                )}
+              </span>
+            </var>
+            <var className="d-flex align-items-center ">
+              <span className="text-nowrap">
+                P({Xn} &lt; x &lt; {Yn}) = &nbsp;
+              </span>
+              <span>
+                {React.Children.toArray(
+                  XExp.map((x, i) => (
+                    <>
+                      {Bin(N, P, x).toFixed(4)} {i !== XExp.length - 1 && "+ "}
+                    </>
+                  ))
+                )}
+              </span>
+            </var>
+            <var>
+              P({Xn} &lt; x &lt; {Yn}) = {Res.toFixed(4)}
+            </var>
+          </div>
+        ) : (
+          ""
+        ))}
     </Container>
   );
 }
