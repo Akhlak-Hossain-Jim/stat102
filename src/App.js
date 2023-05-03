@@ -11,6 +11,7 @@ import Mode from "./Views/Mode";
 import GeometricMean from "./Views/GeometricMean";
 import HarmonicMean from "./Views/HarmonicMean";
 import RandomGen from "./Views/RandomGen";
+import BPD from "./Views/BPD";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -48,6 +49,10 @@ export default function App() {
     {
       name: "Harmonic Mean",
       component: <HarmonicMean data={ProcessedDATA} />,
+    },
+    {
+      name: "Binomial Probability Distribution",
+      component: <BPD data={ProcessedDATA} />,
     },
   ];
 
@@ -94,7 +99,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 ? (
+      {ActiveNav !== 0 && ActiveNav < 8 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
@@ -107,11 +112,16 @@ export default function App() {
 
 const Container = styled.div`
   width: min(1440px, 100%);
-  height: min(100dvh, 100vh);
+  height: 100dvh;
+  overflow-y: hidden;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 3fr 9fr;
   @media (max-width: 548px) {
     grid-template-columns: 1fr;
+  }
+  & > * {
+    height: 100%;
+    overflow-y: auto;
   }
 `;
