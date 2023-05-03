@@ -220,27 +220,6 @@ const Container = styled.main`
     display: flex;
     flex-direction: column;
     gap: 24px;
-    .field {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      gap: 6px;
-      font-size: 1.2rem;
-      & > input,
-      & > select {
-        padding: 6px 12px;
-        border-radius: 10px;
-        border: none;
-        outline: none;
-        font-size: 1.2rem;
-        background-color: transparent;
-        box-shadow: var(--dark-shadow-out);
-        color: var(--light);
-        & > option {
-          background: var(--dark);
-        }
-      }
-    }
     .two_col {
       display: flex;
       gap: 24px;
