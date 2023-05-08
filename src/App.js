@@ -12,6 +12,7 @@ import GeometricMean from "./Views/GeometricMean";
 import HarmonicMean from "./Views/HarmonicMean";
 import RandomGen from "./Views/RandomGen";
 import BPD from "./Views/BPD";
+import PoissonDis from "./Views/PoissonDis";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -52,42 +53,46 @@ export default function App() {
     },
     {
       name: "Binomial Probability Distribution",
-      component: <BPD data={ProcessedDATA} />,
+      component: <BPD />,
+    },
+    {
+      name: "Poisson Distribution",
+      component: <PoissonDis />,
     },
   ];
 
-  const NAVsP = {
-    frequencyTable: {
-      name: "Frequency Table",
-      handle: "frequencyTable",
-      component: <FrequencyTable data={ProcessedDATA} />,
-    },
-    graphicalPresentation: {
-      name: "Graphical Presentation",
-      handle: "graphicalPresentation",
-      component: <HistoGram data={ProcessedDATA} />,
-    },
-    as: {
-      name: "Arithmetic Mean",
-      component: <ArithmeticMean data={ProcessedDATA} />,
-    },
-    has: {
-      name: "Median",
-      component: <Median data={ProcessedDATA} />,
-    },
-    nas: {
-      name: "Mode",
-      component: <Mode data={ProcessedDATA} />,
-    },
-    ljas: {
-      name: "GeoMetric Mean",
-      component: <GeometricMean data={ProcessedDATA} />,
-    },
-    al: {
-      name: "Harmonic Mean",
-      component: <HarmonicMean data={ProcessedDATA} />,
-    },
-  };
+  // const NAVsP = {
+  //   frequencyTable: {
+  //     name: "Frequency Table",
+  //     handle: "frequencyTable",
+  //     component: <FrequencyTable data={ProcessedDATA} />,
+  //   },
+  //   graphicalPresentation: {
+  //     name: "Graphical Presentation",
+  //     handle: "graphicalPresentation",
+  //     component: <HistoGram data={ProcessedDATA} />,
+  //   },
+  //   as: {
+  //     name: "Arithmetic Mean",
+  //     component: <ArithmeticMean data={ProcessedDATA} />,
+  //   },
+  //   has: {
+  //     name: "Median",
+  //     component: <Median data={ProcessedDATA} />,
+  //   },
+  //   nas: {
+  //     name: "Mode",
+  //     component: <Mode data={ProcessedDATA} />,
+  //   },
+  //   ljas: {
+  //     name: "GeoMetric Mean",
+  //     component: <GeometricMean data={ProcessedDATA} />,
+  //   },
+  //   al: {
+  //     name: "Harmonic Mean",
+  //     component: <HarmonicMean data={ProcessedDATA} />,
+  //   },
+  // };
 
   const [ActiveNav, setActiveNav] = useState(0);
 
