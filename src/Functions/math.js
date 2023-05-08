@@ -26,3 +26,44 @@ export function Bin(n, p, x, mode = "s") {
     return res;
   } else return undefined;
 }
+
+export function Poiss(avg, x, mode = "s", calc = "s") {
+  if (mode === "s" && calc === "s") {
+    let res;
+    let fact = 1;
+    for (let i = 1; i <= x; i++) {
+      fact *= i;
+    }
+    let a = Math.pow(avg, x);
+    let b = Math.pow(Math.E, -avg);
+    let c = a * b;
+    res = c / fact;
+    return res;
+  } else if (mode === "m" && calc === "s") {
+    let res = 0;
+    for (let el of x) {
+      let fact = 1;
+      for (let i = 1; i <= el; i++) {
+        fact *= i;
+      }
+      let a = Math.pow(avg, el);
+      let b = Math.pow(Math.E, -avg);
+      let c = a * b;
+      res = c / fact;
+    }
+    return res;
+  } else if (mode === "m" && calc === "l") {
+    let res = 0;
+    for (let el of x) {
+      let fact = 1;
+      for (let i = 1; i <= el; i++) {
+        fact *= i;
+      }
+      let a = Math.pow(avg, el);
+      let b = Math.pow(Math.E, -avg);
+      let c = a * b;
+      res = c / fact;
+    }
+    return 1 - res;
+  } else return undefined;
+}
