@@ -9,6 +9,7 @@ export default function BPD() {
   const body = (
     <>
       <p>In short: X ~ Bin(n, p)</p>
+      <br />
       <table>
         <thead>
           <tr>
