@@ -54,8 +54,9 @@ const Container = styled.aside`
   flex-direction: column;
   & > .logo {
     width: 100px;
-    aspect-ratio: 100/46;
-    margin: 0 auto 24px;
+    height: 46px;
+    padding-bottom: 46px;
+    margin: 0 auto;
     overflow: hidden;
     display: flex;
   }
