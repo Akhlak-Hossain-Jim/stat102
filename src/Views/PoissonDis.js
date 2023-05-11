@@ -114,7 +114,7 @@ export default function PoissonDis() {
 
   return (
     <Container>
-      <h1>Poissomial Probability Distribution</h1>
+      <h1>Poisson Probability Distribution</h1>
       <p>
         <u>Uses:</u>
         <ol>
