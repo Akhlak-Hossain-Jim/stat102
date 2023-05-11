@@ -49,8 +49,8 @@ function Content({ title, data }) {
         </>
       ) : (
         <h1 className="comment">
-          Can not perform <strong>Quartiles</strong> calculation on "{title}"
-          data set, as the data is not numerical or categorical data
+          Can not perform <strong>Range</strong> calculation on "{title}" data
+          set, as the data is not numerical or categorical data
         </h1>
       )}
     </ContentContainer>
