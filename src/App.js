@@ -14,6 +14,8 @@ import RandomGen from "./Views/RandomGen";
 import BPD from "./Views/BPD";
 import PoissonDis from "./Views/PoissonDis";
 import Quartiles from "./Views/Quartiles";
+import AbsoluteDispersion from "./Views/AbsoluteDispersion";
+import RelativeDispersion from "./Views/RelativeDispersion";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -55,6 +57,14 @@ export default function App() {
     {
       name: "Quartiles",
       component: <Quartiles data={ProcessedDATA} />,
+    },
+    {
+      name: "Absolute type Dispersion",
+      component: <AbsoluteDispersion data={ProcessedDATA} />,
+    },
+    {
+      name: "Relative type Dispersion",
+      component: <RelativeDispersion data={ProcessedDATA} />,
     },
     {
       name: "Binomial Probability Distribution",
@@ -109,7 +119,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 9 ? (
+      {ActiveNav !== 0 && ActiveNav < 11 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>

@@ -10,17 +10,17 @@ export default function ContentContainer({ pushData, children, tab }) {
 Data title: data, data, data, ...
 Data title: data, data, data, ...
 ...`
-      : tab < 6 || tab === 7 || tab === 8
-      ? `Input format: (Must be numeric value)
-Data title: data, data, data, ...
-Data title: data, data, data, ...
-...`
       : tab === 6
       ? `Input format: (Must be numeric value)
 Either:
 Data title: Initial value(ie: 100), New value(ie:110), Time period
 Or:
 Data title: 1% profit, 3% lose, ...`
+      : tab < 6 || tab >= 7 || tab <= 10
+      ? `Input format: (Must be numeric value)
+Data title: data, data, data, ...
+Data title: data, data, data, ...
+...`
       : ``;
 
   const handleSubmit = (e) => {
