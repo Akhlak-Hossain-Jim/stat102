@@ -40,8 +40,6 @@ export default function MedianModeComponent({ calculate, title, data }) {
     }
   }, [SortedValue]);
 
-  console.log(SortedValue);
-
   return {
     mode: SET && (
       <Container>
