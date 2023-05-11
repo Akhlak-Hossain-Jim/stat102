@@ -11,7 +11,7 @@ export default function MedianModeComponent({ calculate, title, data }) {
 
   useEffect(() => {
     setSET(makeFrequencyObj(false, data).sort((a, b) => b.count - a.count));
-    setSortedValue(data.sort((a, b) => a.count - b.count));
+    setSortedValue([...data].map((el) => Number(el)).sort((a, b) => a - b));
   }, [data]);
 
   useEffect(() => {
@@ -26,21 +26,21 @@ export default function MedianModeComponent({ calculate, title, data }) {
   }, [data]);
 
   useEffect(() => {
-    if (SortedValue && Array.isArray(SortedValue) && SortedValue.length) {
+    if (SortedValue && Array.isArray(SortedValue) && SortedValue.length > 0) {
       let i = (SortedValue.length + 1) / 2;
       if (Number.isInteger(i)) {
-        setMedian(SortedValue[i]);
+        setMedian(SortedValue[i - 1]);
       } else {
         let a =
-          (Number(SortedValue[Math.floor(i)]) +
-            Number(SortedValue[Math.floor(i) + 1])) /
+          (Number(SortedValue[Math.floor(i) - 1]) +
+            Number(SortedValue[Math.floor(i)])) /
           2;
         setMedian(a);
       }
     }
   }, [SortedValue]);
 
-  console.log(typeof ((data.length + 1) / 2));
+  console.log(SortedValue);
 
   return {
     mode: SET && (
@@ -119,8 +119,8 @@ export default function MedianModeComponent({ calculate, title, data }) {
                       <var>Median</var>
                       <var> = </var>
                       <var>
-                        ({SortedValue[Math.floor((data.length + 1) / 2)]}+
-                        {SortedValue[Math.floor((data.length + 1) / 2) + 1]}
+                        ({SortedValue[Math.floor((data.length + 1) / 2) - 1]}+
+                        {SortedValue[Math.floor((data.length + 1) / 2)]}
                         )&divide;2
                       </var>
                     </div>
