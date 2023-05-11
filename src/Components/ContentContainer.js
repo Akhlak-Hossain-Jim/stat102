@@ -5,12 +5,12 @@ export default function ContentContainer({ pushData, children, tab }) {
   const [Data, setData] = useState();
 
   const placeholder =
-    tab < 3 || tab === 7
+    tab < 3 || tab === 5
       ? `Input format:
 Data title: data, data, data, ...
 Data title: data, data, data, ...
 ...`
-      : tab < 6 || tab === 8
+      : tab < 6 || tab === 7 || tab === 8
       ? `Input format: (Must be numeric value)
 Data title: data, data, data, ...
 Data title: data, data, data, ...

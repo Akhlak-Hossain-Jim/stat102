@@ -13,6 +13,7 @@ import HarmonicMean from "./Views/HarmonicMean";
 import RandomGen from "./Views/RandomGen";
 import BPD from "./Views/BPD";
 import PoissonDis from "./Views/PoissonDis";
+import Quartiles from "./Views/Quartiles";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -48,12 +49,12 @@ export default function App() {
       component: <GeometricMean data={ProcessedDATA} />,
     },
     {
-      name: "Quartiles",
-      component: <GeometricMean data={ProcessedDATA} />,
-    },
-    {
       name: "Harmonic Mean",
       component: <HarmonicMean data={ProcessedDATA} />,
+    },
+    {
+      name: "Quartiles",
+      component: <Quartiles data={ProcessedDATA} />,
     },
     {
       name: "Binomial Probability Distribution",
