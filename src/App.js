@@ -48,6 +48,10 @@ export default function App() {
       component: <GeometricMean data={ProcessedDATA} />,
     },
     {
+      name: "Quartiles",
+      component: <GeometricMean data={ProcessedDATA} />,
+    },
+    {
       name: "Harmonic Mean",
       component: <HarmonicMean data={ProcessedDATA} />,
     },
@@ -104,7 +108,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 8 ? (
+      {ActiveNav !== 0 && ActiveNav < 9 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
