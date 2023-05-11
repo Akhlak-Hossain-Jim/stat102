@@ -395,7 +395,7 @@ const QuartileGraph = styled.div`
 export default function Quartile({ data }) {
   return (
     <Container>
-      <h1>Quartiles {data && data.length > 1 ? "s" : ""}:</h1>
+      <h1>Quartiles:</h1>
       {data &&
         Array.isArray(data) &&
         data.length > 0 &&
