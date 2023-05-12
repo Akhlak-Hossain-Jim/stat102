@@ -150,6 +150,32 @@ export function CoEffMeanDeviationCalc(data) {
       });
     }
   }
-  result = array.sort((a, b) => Number(b.cv) - Number(a.cv));
+  result = array.sort((a, b) => Number(b.cd) - Number(a.cd));
+  return result;
+}
+
+export function CoEffRangeCalc(data) {
+  let result;
+  let array = [];
+  for (let item of data) {
+    if (dataIsNumber(item.data)) {
+      let arr = [...item.data].map((el) => Number(el)).sort((a, b) => a - b);
+      let min = arr[0];
+      let max = arr[arr.length - 1];
+      let sub = max - min;
+      let sum = max + min;
+      let cd = ((sub / sum) * 100).toFixed(2);
+      array.push({
+        name: item.name,
+        arr,
+        min,
+        max,
+        sub,
+        sum,
+        cd,
+      });
+    }
+  }
+  result = array.sort((a, b) => Number(b.cd) - Number(a.cd));
   return result;
 }
