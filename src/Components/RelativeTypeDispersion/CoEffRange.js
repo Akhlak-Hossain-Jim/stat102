@@ -53,8 +53,11 @@ function Content({ data }) {
                   <br />
                   <div className="calculation">
                     <div className="math">
-                      <var>Sorted data:</var>
+                      <var>
+                        <u>Sorted data:</u>
+                      </var>
                       <var>{item.arr.join(", ")}</var>
+                      <br />
                       <var>
                         <span>
                           X<sub>min {item.name}</sub>
