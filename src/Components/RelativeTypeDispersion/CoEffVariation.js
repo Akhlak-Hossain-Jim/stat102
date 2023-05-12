@@ -454,14 +454,16 @@ export default function CoEffVariation({ data }) {
   return (
     <Container>
       <h1>Co-efficient of Variation (CV):</h1>
-      {data && Array.isArray(data) && data.length < 2 ? (
-        <>
-          <br />
-          <h2>Need at least 2 numerical data set to compare</h2>
-        </>
-      ) : (
-        <Content data={data} />
-      )}
+      {data &&
+        Array.isArray(data) &&
+        (data.length < 2 ? (
+          <>
+            <br />
+            <h2>Need at least 2 numerical data set to compare</h2>
+          </>
+        ) : (
+          <Content data={data} />
+        ))}
     </Container>
   );
 }
