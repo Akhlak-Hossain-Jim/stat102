@@ -60,7 +60,7 @@ function Content({ data }) {
       {isNum && CoMeanDevArr ? (
         <>
           <h1 className="title">
-            Co-efficient of mean deviation of{" "}
+            Co-efficient of Mean Deviation of{" "}
             {[...data].map((el) => el.name).join(", ")}:
           </h1>
           <div className="am_con">
