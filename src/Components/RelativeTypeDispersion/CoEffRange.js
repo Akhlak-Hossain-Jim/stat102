@@ -7,7 +7,7 @@ import { CoEffCommentGen } from "../../Functions/CommentGen";
 
 function Content({ data }) {
   const [isNum, setIsNum] = useState();
-  const [VarianceObj, setVarianceObj] = useState();
+  const [RangeArray, setRangeArray] = useState();
   const [Comment, setComment] = useState();
   const [Comment2, setComment2] = useState();
 
@@ -32,22 +32,22 @@ function Content({ data }) {
       setComment2(
         CoEffCommentGen(comment, "is more consistent than", "reverse")
       );
-      setVarianceObj(array);
+      setRangeArray(array);
     }
   }, [data, isNum]);
 
-  console.log(VarianceObj);
+  console.log(RangeArray);
 
   return (
     <ContentContainer>
-      {isNum && VarianceObj ? (
+      {isNum && RangeArray ? (
         <>
           <h1 className="title">
             Co-efficient of Range of {[...data].map((el) => el.name).join(", ")}
             :
           </h1>
           {React.Children.toArray(
-            VarianceObj.map((item) => (
+            RangeArray.map((item) => (
               <>
                 <div className="am_con">
                   <br />
@@ -131,7 +131,7 @@ function Content({ data }) {
               <h3>So,</h3>
               <div className="math">
                 {React.Children.toArray(
-                  VarianceObj.map((item) => (
+                  RangeArray.map((item) => (
                     <var>
                       <span>
                         CV<sub>{item.name}</sub>
