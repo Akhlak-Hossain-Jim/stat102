@@ -7,7 +7,7 @@ import Divide from "./Divide";
 
 function Content({ title, data }) {
   const [isNum, setIsNum] = useState();
-  const [MeanDevObj, setMeanDevObj] = useState();
+  const [StdDevObj, setStdDevObj] = useState();
 
   const [NType, setNType] = useState("sample");
 
@@ -31,15 +31,15 @@ function Content({ title, data }) {
 
   useEffect(() => {
     if (isNum) {
-      setMeanDevObj(StdDeviationCalc(data, NType));
+      setStdDevObj(StdDeviationCalc(data, NType));
     }
   }, [data, isNum, NType]);
 
-  console.log(MeanDevObj);
+  console.log(StdDevObj);
 
   return (
     <ContentContainer>
-      {isNum && MeanDevObj ? (
+      {isNum && StdDevObj ? (
         <>
           <h1 className="title">Range of {title && title}:</h1>
           <div className="am_con">
@@ -79,7 +79,7 @@ function Content({ title, data }) {
                       a={React.Children.toArray(
                         data.map((vx, i) => (
                           <>
-                            ( {vx} - {MeanDevObj.avg.toFixed(2)} )<sup>2</sup>{" "}
+                            ( {vx} - {StdDevObj.avg.toFixed(2)} )<sup>2</sup>{" "}
                             {i !== data.length - 1 && " + "}
                           </>
                         ))
@@ -93,7 +93,7 @@ function Content({ title, data }) {
                       a={React.Children.toArray(
                         data.map((vx, i) => (
                           <>
-                            ( {(vx - MeanDevObj.avg).toFixed(2)} )<sup>2</sup>{" "}
+                            ( {(vx - StdDevObj.avg).toFixed(2)} )<sup>2</sup>{" "}
                             {i !== data.length - 1 && " + "}
                           </>
                         ))
@@ -105,10 +105,10 @@ function Content({ title, data }) {
                     s = &radic;{" "}
                     <Divide
                       a={React.Children.toArray(
-                        MeanDevObj.arr2.map((val, i) => (
+                        StdDevObj.arr2.map((val, i) => (
                           <>
                             {val.toFixed(4)}
-                            {i !== MeanDevObj.arr2.length - 1 && " + "}
+                            {i !== StdDevObj.arr2.length - 1 && " + "}
                           </>
                         ))
                       )}
@@ -118,15 +118,15 @@ function Content({ title, data }) {
                   <var>
                     s = &radic;{" "}
                     <Divide
-                      a={MeanDevObj.sumOfDiff.toFixed(4)}
+                      a={StdDevObj.sumOfDiff.toFixed(4)}
                       b={data.length - 1}
                     />
                   </var>
                   <var>
                     s = &radic;{" "}
-                    {(MeanDevObj.sumOfDiff / (data.length - 1)).toFixed(4)}
+                    {(StdDevObj.sumOfDiff / (data.length - 1)).toFixed(4)}
                   </var>
-                  <var>Standard Deviation, s = {MeanDevObj.res.toFixed(4)}</var>
+                  <var>Standard Deviation, s = {StdDevObj.res.toFixed(4)}</var>
                 </div>
               ) : NType === "population" ? (
                 <div className="math">
@@ -147,7 +147,7 @@ function Content({ title, data }) {
                       a={React.Children.toArray(
                         data.map((vx, i) => (
                           <>
-                            ( {vx} - {MeanDevObj.avg.toFixed(2)} )<sup>2</sup>{" "}
+                            ( {vx} - {StdDevObj.avg.toFixed(2)} )<sup>2</sup>{" "}
                             {i !== data.length - 1 && " + "}
                           </>
                         ))
@@ -161,7 +161,7 @@ function Content({ title, data }) {
                       a={React.Children.toArray(
                         data.map((vx, i) => (
                           <>
-                            ( {(vx - MeanDevObj.avg).toFixed(2)} )<sup>2</sup>{" "}
+                            ( {(vx - StdDevObj.avg).toFixed(2)} )<sup>2</sup>{" "}
                             {i !== data.length - 1 && " + "}
                           </>
                         ))
@@ -173,10 +173,10 @@ function Content({ title, data }) {
                     &sigma; = &radic;{" "}
                     <Divide
                       a={React.Children.toArray(
-                        MeanDevObj.arr2.map((val, i) => (
+                        StdDevObj.arr2.map((val, i) => (
                           <>
                             {val.toFixed(4)}
-                            {i !== MeanDevObj.arr2.length - 1 && " + "}
+                            {i !== StdDevObj.arr2.length - 1 && " + "}
                           </>
                         ))
                       )}
@@ -186,16 +186,16 @@ function Content({ title, data }) {
                   <var>
                     &sigma; = &radic;{" "}
                     <Divide
-                      a={MeanDevObj.sumOfDiff.toFixed(4)}
+                      a={StdDevObj.sumOfDiff.toFixed(4)}
                       b={data.length}
                     />
                   </var>
                   <var>
                     &sigma; = &radic;{" "}
-                    {(MeanDevObj.sumOfDiff / data.length).toFixed(4)}
+                    {(StdDevObj.sumOfDiff / data.length).toFixed(4)}
                   </var>
                   <var>
-                    Standard Deviation, &sigma; = {MeanDevObj.res.toFixed(4)}
+                    Standard Deviation, &sigma; = {StdDevObj.res.toFixed(4)}
                   </var>
                 </div>
               ) : (
@@ -204,7 +204,7 @@ function Content({ title, data }) {
             </div>
             <p>
               <u>Comment:</u> The average absolute distance from mean of {title}{" "}
-              data set is {MeanDevObj.res.toFixed(4)}.
+              data set is {StdDevObj.res.toFixed(4)}.
             </p>
           </div>
         </>
