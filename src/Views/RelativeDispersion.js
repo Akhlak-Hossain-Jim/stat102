@@ -6,7 +6,7 @@ import CoEffQuartileDeviation from "../Components/RelativeTypeDispersion/CoEffQu
 import CoEffVariation from "../Components/RelativeTypeDispersion/CoEffVariation";
 
 export default function RelativeDispersion({ data }) {
-  const [CurrentNav, setCurrentNav] = useState(2);
+  const [CurrentNav, setCurrentNav] = useState(0);
 
   const NAVs = [
     {
