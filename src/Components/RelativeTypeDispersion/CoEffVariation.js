@@ -304,12 +304,12 @@ function Content({ data }) {
                           <Divide
                             a={
                               <>
-                                S<sub>{item.name}</sub>
+                                &sigma;<sub>{item.name}</sub>
                               </>
                             }
                             b={
                               <>
-                                &sigma;<sub>{item.name}</sub>
+                                &micro;<sub>{item.name}</sub>
                               </>
                             }
                           />{" "}
