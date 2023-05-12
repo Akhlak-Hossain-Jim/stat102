@@ -210,7 +210,7 @@ function Content({ title, data }) {
         </>
       ) : (
         <h1 className="comment">
-          Can not perform <strong>Mean Deviation</strong> calculation on "
+          Can not perform <strong>Standard Deviation</strong> calculation on "
           {title}" data set, as the data is not numerical or categorical data
         </h1>
       )}
