@@ -179,3 +179,35 @@ export function CoEffRangeCalc(data) {
   result = array.sort((a, b) => Number(b.cd) - Number(a.cd));
   return result;
 }
+export function CoEffQuartileDeviationCalc(data) {
+  let result;
+  let array = [];
+  for (let item of data) {
+    if (dataIsNumber(item.data)) {
+      let arr = [...item.data].map((el) => Number(el)).sort((a, b) => a - b);
+      let n = arr.length;
+      let q1 = ((n + 1) * 25) / 100;
+      let q3 = ((n + 1) * 75) / 100;
+      let q1val =
+        arr[Math.floor(q1) - 1] +
+        (q1 - Math.floor(q1)) * (arr[Math.floor(q1)] - arr[Math.floor(q1) - 1]);
+      let q3val =
+        arr[Math.floor(q3) - 1] +
+        (q3 - Math.floor(q3)) * (arr[Math.floor(q3)] - arr[Math.floor(q3) - 1]);
+      let sub = q3val - q1val;
+      let sum = q3val + q1val;
+      let cd = ((sub / sum) * 100).toFixed(2);
+      array.push({
+        name: item.name,
+        arr,
+        q1: q1val,
+        q3: q3val,
+        sub,
+        sum,
+        cd,
+      });
+    }
+  }
+  result = array.sort((a, b) => Number(b.cd) - Number(a.cd));
+  return result;
+}
