@@ -84,3 +84,45 @@ export function VarianceCalc(data, dataType) {
     }
   }
 }
+
+export function CoEffVariationCalc(data, dataType) {
+  let result;
+  let array = [];
+  for (let item of data) {
+    if (dataIsNumber(item.data)) {
+      let arr = [...item.data].map((el) => Number(el));
+      let n = arr.length;
+      let sum = arr.reduce((a, b) => a + b, 0);
+      let avg = sum / n;
+      if (dataType === "sample") {
+        let arr2 = [...arr].map((el) => (el - avg) ** 2);
+        let sum2 = arr2.reduce((a, b) => a + b, 0);
+        let std = Math.sqrt(sum2 / (n - 1));
+        let cv = ((std / avg) * 100).toFixed(2);
+        array.push({
+          name: item.name,
+          std,
+          avg,
+          arr,
+          arr2,
+          cv,
+        });
+      } else if (dataType === "population") {
+        let arr2 = [...arr].map((el) => (el - avg) ** 2);
+        let sum2 = arr2.reduce((a, b) => a + b, 0);
+        let std = Math.sqrt(sum2 / n);
+        let cv = ((std / avg) * 100).toFixed(2);
+        array.push({
+          name: item.name,
+          std,
+          avg,
+          arr,
+          arr2,
+          cv,
+        });
+      }
+    }
+  }
+  result = array.sort((a, b) => Number(b.cv) - Number(a.cv));
+  return result;
+}
