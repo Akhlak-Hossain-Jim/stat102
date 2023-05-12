@@ -24,7 +24,7 @@ function Content({ title, data }) {
     <ContentContainer>
       {isNum && QuartileDevObj ? (
         <>
-          <h1 className="title">Range of {title && title}:</h1>
+          <h1 className="title">Quartile Deviation of {title && title}:</h1>
           <div className="am_con">
             <div className="calculation">
               <div className="math">

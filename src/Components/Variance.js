@@ -41,7 +41,7 @@ function Content({ title, data }) {
     <ContentContainer>
       {isNum && VarianceObj ? (
         <>
-          <h1 className="title">Range of {title && title}:</h1>
+          <h1 className="title">Variance of {title && title}:</h1>
           <div className="am_con">
             <div className="choose_nType">
               <h2>Choose variable type:</h2>
