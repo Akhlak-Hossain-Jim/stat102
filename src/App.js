@@ -16,6 +16,7 @@ import PoissonDis from "./Views/PoissonDis";
 import Quartiles from "./Views/Quartiles";
 import AbsoluteDispersion from "./Views/AbsoluteDispersion";
 import RelativeDispersion from "./Views/RelativeDispersion";
+import Skewness from "./Views/Skewness";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -65,6 +66,10 @@ export default function App() {
     {
       name: "Relative type Dispersion",
       component: <RelativeDispersion data={ProcessedDATA} />,
+    },
+    {
+      name: "Measures of Skewness",
+      component: <Skewness data={ProcessedDATA} />,
     },
     {
       name: "Binomial Probability Distribution",
@@ -119,7 +124,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 11 ? (
+      {ActiveNav !== 0 && ActiveNav < 12 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
