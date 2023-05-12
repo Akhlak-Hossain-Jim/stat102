@@ -126,3 +126,30 @@ export function CoEffVariationCalc(data, dataType) {
   result = array.sort((a, b) => Number(b.cv) - Number(a.cv));
   return result;
 }
+
+export function CoEffMeanDeviationCalc(data) {
+  let result;
+  let array = [];
+  for (let item of data) {
+    if (dataIsNumber(item.data)) {
+      let arr = [...item.data].map((el) => Number(el));
+      let n = arr.length;
+      let sum = arr.reduce((a, b) => a + b, 0);
+      let avg = sum / n;
+      let arr2 = [...arr].map((el) => Math.abs(el - avg));
+      let sum2 = arr2.reduce((a, b) => a + b, 0);
+      let meanD = sum2 / n;
+      let cd = ((meanD / avg) * 100).toFixed(2);
+      array.push({
+        name: item.name,
+        meanD,
+        avg,
+        arr,
+        arr2,
+        cd,
+      });
+    }
+  }
+  result = array.sort((a, b) => Number(b.cv) - Number(a.cv));
+  return result;
+}
