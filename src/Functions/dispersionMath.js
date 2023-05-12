@@ -45,3 +45,22 @@ export function StdDeviationCalc(data, dataType) {
     }
   }
 }
+
+export function QuartileDeviationCalc(data) {
+  if (dataIsNumber(data)) {
+    let arr = [...data].map((el) => Number(el));
+    let sArr = arr.sort((a, b) => a - b);
+    let n = arr.length;
+    let q1 = ((n + 1) * 25) / 100;
+    let q3 = ((n + 1) * 75) / 100;
+    let q1val =
+      sArr[Math.floor(q1) - 1] +
+      (q1 - Math.floor(q1)) * (sArr[Math.floor(q1)] - sArr[Math.floor(q1) - 1]);
+    let q3val =
+      sArr[Math.floor(q3) - 1] +
+      (q3 - Math.floor(q3)) * (sArr[Math.floor(q3)] - sArr[Math.floor(q3) - 1]);
+    let iqr = q3val - q1val;
+    let res = iqr / 2;
+    return { q1: q1val, q3: q3val, iqr, res };
+  }
+}
