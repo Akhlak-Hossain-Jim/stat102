@@ -44,59 +44,66 @@ function Content({ title, data }) {
 
   console.log(SD, Mean, Median, Skw, Shape);
 
-  return (
-    isNum &&
-    Mean &&
-    Median &&
-    SD &&
-    Skw && (
-      <ContentContainer>
-        <h1>Skewness of "{title}":</h1>
-        <div className="am_con">
-          <div className="calculation">
-            <div className="math">
-              <var>
-                Skw ={" "}
-                <Divide
-                  a={<>3 x ( Mean - Median )</>}
-                  b={<>Standard Deviation</>}
-                />
-              </var>
-              <var>
-                Skw ={" "}
-                <Divide
-                  a={
-                    <>
-                      3 x ( {Mean.toFixed(4)} - {Median} )
-                    </>
-                  }
-                  b={SD.toFixed(4)}
-                />
-              </var>
-              <var>
-                Skw ={" "}
-                <Divide
-                  a={<>3 x ( {(Mean - Median).toFixed(4)} )</>}
-                  b={SD.toFixed(4)}
-                />
-              </var>
-              <var>
-                Skw ={" "}
-                <Divide
-                  a={<>{(3 * (Mean - Median)).toFixed(4)}</>}
-                  b={SD.toFixed(4)}
-                />
-              </var>
-              <var>Skw = {Skw.toFixed(4)}</var>
-            </div>
+  return isNum && Mean && Median && SD && Skw ? (
+    <ContentContainer>
+      <h1>Skewness of "{title}":</h1>
+      <div className="am_con">
+        <div className="calculation">
+          <div className="math">
+            <var>
+              Skw ={" "}
+              <Divide
+                a={<>3 x ( Mean - Median )</>}
+                b={<>Standard Deviation</>}
+              />
+            </var>
+            <var>
+              Skw ={" "}
+              <Divide
+                a={
+                  <>
+                    3 x ( {Mean.toFixed(4)} - {Median} )
+                  </>
+                }
+                b={SD.toFixed(4)}
+              />
+            </var>
+            <var>
+              Skw ={" "}
+              <Divide
+                a={<>3 x ( {(Mean - Median).toFixed(4)} )</>}
+                b={SD.toFixed(4)}
+              />
+            </var>
+            <var>
+              Skw ={" "}
+              <Divide
+                a={<>{(3 * (Mean - Median)).toFixed(4)}</>}
+                b={SD.toFixed(4)}
+              />
+            </var>
+            <var>Skw = {Skw.toFixed(4)}</var>
           </div>
-          <p>
-            <u>Comment:</u> The shape of the data "{title}" is {Shape}
-            {/* {title} data set is {RangeObj.range}. */}
-          </p>
         </div>
-      </ContentContainer>
-    )
+        <p>
+          <u>Comment:</u> The shape of the data "{title}" is {Shape}
+          {/* {title} data set is {RangeObj.range}. */}
+        </p>
+      </div>
+    </ContentContainer>
+  ) : (
+    <h1 className="comment">
+      Can not perform calculation due to some error. Please check the console
+      for more information, and report it{" "}
+      <a
+        href="https://github.com/Akhlak-Hossain-Jim/stat102/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        here
+      </a>
+      .
+    </h1>
   );
 }
 
