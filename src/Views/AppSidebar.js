@@ -10,6 +10,16 @@ export default function AppSidebar({ navArray, cNav, setCNav }) {
 
   return (
     <>
+      <Space>
+        <a
+          className="logo img"
+          href="http://ahjim.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/logo.png" alt="ahjim logo" />
+        </a>
+      </Space>
       <Container className={HamStat ? "active" : ""}>
         <a
           className="logo img"
@@ -33,16 +43,6 @@ export default function AppSidebar({ navArray, cNav, setCNav }) {
       <Ham onClick={() => setHamStat(!HamStat)}>
         <span className={HamStat ? "active" : ""}></span>
       </Ham>
-      <Space>
-        <a
-          className="logo img"
-          href="http://ahjim.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/logo.png" alt="ahjim logo" />
-        </a>
-      </Space>
     </>
   );
 }
@@ -82,6 +82,7 @@ const Container = styled.aside`
       background-color: var(--dark);
       height: 100dvh;
       overflow-y: auto;
+      z-index: 500;
     }
   }
 `;
@@ -98,6 +99,7 @@ const Ham = styled.button`
   padding: 24px 10px;
   border-radius: 50%;
   height: max-content !important;
+  z-index: 501;
   @media (min-width: 549px) {
     display: none;
   }
