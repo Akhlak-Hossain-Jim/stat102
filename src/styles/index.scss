@@ -111,6 +111,9 @@ input {
 }
 
 .text {
+  &-left {
+    text-align: left;
+  }
   &-wrap {
     white-space: normal;
   }
