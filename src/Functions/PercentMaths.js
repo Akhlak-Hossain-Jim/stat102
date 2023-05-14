@@ -1,5 +1,6 @@
 export function percentOf(minMax, per) {
   if (
+    minMax &&
     minMax.min &&
     minMax.max &&
     !isNaN(minMax.min) &&
@@ -14,6 +15,7 @@ export function percentOf(minMax, per) {
 }
 export function percentOfNumInRange(minMax, num) {
   if (
+    minMax &&
     minMax.min &&
     minMax.max &&
     !isNaN(minMax.min) &&

@@ -21,6 +21,7 @@ function Content({ title, data }) {
   const [LowerLimit, setLowerLimit] = useState();
   const [UpperLimit, setUpperLimit] = useState();
   const [GraphRange, setGraphRange] = useState();
+  const [Calcs, setCalcs] = useState();
 
   useEffect(() => {
     setIsNum(dataIsNumber(data));
@@ -62,6 +63,7 @@ function Content({ title, data }) {
       setMin();
     }
   }, [data, isNum]);
+
   useEffect(() => {
     if (MinE || MaxE) {
       setExtremeValues([
@@ -80,7 +82,27 @@ function Content({ title, data }) {
     } else setGraphRange();
   }, [data, MinE, MaxE, Min, Max]);
 
-  console.log(MinE, MaxE, ExtremeValues, GraphRange);
+  useEffect(() => {
+    if (Q1 && Q2 && Q3 && Min && Max && GraphRange) {
+      let obj = {
+        labels: [
+          GraphRange.min,
+          Math.ceil(percentOf(GraphRange, (1 / 6) * 100) / 10) * 10,
+          Math.ceil(percentOf(GraphRange, (2 / 6) * 100) / 10) * 10,
+          Math.ceil(percentOf(GraphRange, (3 / 6) * 100) / 10) * 10,
+          Math.ceil(percentOf(GraphRange, (4 / 6) * 100) / 10) * 10,
+          Math.ceil(percentOf(GraphRange, (5 / 6) * 100) / 10) * 10,
+          GraphRange.max,
+        ],
+      };
+      setCalcs(obj);
+    } else setCalcs();
+  }, [Q1, Q2, Q3, Min, Max, GraphRange]);
+
+  console.log(
+    Math.ceil(percentOf(GraphRange, (5 / 6) * 100) / 10) * 10,
+    GraphRange
+  );
 
   return isNum &&
     Q1 &&
@@ -90,7 +112,8 @@ function Content({ title, data }) {
     Max &&
     UpperLimit &&
     LowerLimit &&
-    GraphRange ? (
+    GraphRange &&
+    Calcs ? (
     <ContentContainer>
       <div className="am_con">
         <div className="calculation">
