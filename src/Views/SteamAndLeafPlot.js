@@ -32,34 +32,6 @@ function Content({ title, data }) {
     <ContentContainer>
       <h1>Stem & Leaf Plot of "{title}":</h1>
       <div className="am_con">
-        {/* <div className="form">
-          <div
-            className="option"
-            // title={nt.details}
-            // onClick={() => setNType(nt.value)}
-            role="button"
-          >
-            Choose{" "}
-            <span>
-              <input
-                type="number"
-                value={NthPlace}
-                name="SelectNthPlace"
-                onKeyUp={() =>
-                  NthPlace !== 0 ? setNthPlace(NthPlace * 10) : setNthPlace(10)
-                }
-                onKeyDown={() =>
-                  NthPlace !== 0 ? setNthPlace(NthPlace / 10) : setNthPlace(0)
-                }
-                // onChange={(e) =>
-                //   e.target.value >= 0 && setNthPlace(e.target.value)
-                // }
-              />
-              <sup>th</sup>
-            </span>{" "}
-            place to make plot with.
-          </div>
-        </div> */}
         <div className="calculation">
           <table>
             <thead>
