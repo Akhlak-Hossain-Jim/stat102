@@ -16,7 +16,7 @@ Either:
 Data title: Initial value(ie: 100), New value(ie:110), Time period
 Or:
 Data title: 1% profit, 3% lose, ...`
-      : tab < 6 || tab >= 7 || tab <= 12
+      : tab < 6 || tab >= 7 || tab <= 13
       ? `Input format: (Must be numeric value)
 Data title: data, data, data, ...
 Data title: data, data, data, ...
