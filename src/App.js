@@ -17,6 +17,7 @@ import Quartiles from "./Views/Quartiles";
 import AbsoluteDispersion from "./Views/AbsoluteDispersion";
 import RelativeDispersion from "./Views/RelativeDispersion";
 import Skewness from "./Views/Skewness";
+import SteamAndLeafPlot from "./Views/SteamAndLeafPlot";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -72,6 +73,10 @@ export default function App() {
       component: <Skewness data={ProcessedDATA} />,
     },
     {
+      name: "Stem and Leaf Plot",
+      component: <SteamAndLeafPlot data={ProcessedDATA} />,
+    },
+    {
       name: "Binomial Probability Distribution",
       component: <BPD />,
     },
@@ -115,6 +120,7 @@ export default function App() {
   // };
 
   const [ActiveNav, setActiveNav] = useState(0);
+  // const [ActiveNav, setActiveNav] = useState(12);
 
   useEffect(() => {
     setProcessedDATA(DATA && process(DATA));
@@ -124,7 +130,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 12 ? (
+      {ActiveNav !== 0 && ActiveNav < 13 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
