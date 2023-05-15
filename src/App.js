@@ -20,6 +20,7 @@ import Skewness from "./Views/Skewness";
 import SteamAndLeafPlot from "./Views/SteamAndLeafPlot";
 import BoxPlot from "./Views/BoxPlot";
 import Correlation from "./Views/Correlation";
+import Regression from "./Views/Regression";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -87,6 +88,10 @@ export default function App() {
       component: <Correlation data={ProcessedDATA} />,
     },
     {
+      name: "Regression, Error & Co-efficient",
+      component: <Regression data={ProcessedDATA} />,
+    },
+    {
       name: "Binomial Probability Distribution",
       component: <BPD />,
     },
@@ -129,8 +134,8 @@ export default function App() {
   //   },
   // };
 
+  // const [ActiveNav, setActiveNav] = useState(15);
   const [ActiveNav, setActiveNav] = useState(0);
-  // const [ActiveNav, setActiveNav] = useState(14);
 
   useEffect(() => {
     setProcessedDATA(DATA && process(DATA));
@@ -140,7 +145,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 15 ? (
+      {ActiveNav !== 0 && ActiveNav < 16 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
