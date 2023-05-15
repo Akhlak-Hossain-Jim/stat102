@@ -77,3 +77,28 @@ export function findRelationType(R) {
     return res;
   } else return undefined;
 }
+
+export function findRegressionError(Y, a, b, X) {
+  if (
+    X.length === Y.length &&
+    X &&
+    Y &&
+    a &&
+    b &&
+    !isNaN(a) &&
+    !isNaN(b) &&
+    dataIsNumber(X) &&
+    dataIsNumber(Y)
+  ) {
+    let res;
+    let arrX = [...X].map((el) => Number(el));
+    let arrY = [...Y].map((el) => Number(el));
+    let n = arrX.length;
+    let arrYCap = [...arrX].map((el) => a + b * el);
+    let arrYSubYCap = [...arrY].map((el, i) => Math.pow(el - arrYCap[i], 2));
+    let sum = arrYSubYCap.reduce((a, b) => a + b, 0);
+    let Sy = Math.sqrt(sum / n - 2);
+    res = { y: arrY, YCap: arrYCap, subSq: arrYSubYCap, Sy };
+    return res;
+  } else return undefined;
+}
