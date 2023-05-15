@@ -490,6 +490,25 @@ export default function BPD() {
         ) : (
           ""
         ))}
+      {CanCalc && (
+        <div className="math">
+          <var>Mean E[x] = np</var>
+          <var>
+            Mean E[x] = {N}&times;{P}
+          </var>
+          <var>Mean E[x] = {(N * P).toFixed(4)}</var>
+          <br />
+          <var>
+            Variance(x) = &sigma;<sup>2</sup> = np( 1 - p )
+          </var>
+          <var>
+            Variance(x) = &sigma;<sup>2</sup> = {N}&times;{P}&times;( 1 - {P})
+          </var>
+          <var>
+            Variance(x) = &sigma;<sup>2</sup> = {(N * P * (1 - P)).toFixed(4)}
+          </var>
+        </div>
+      )}
     </Container>
   );
 }
