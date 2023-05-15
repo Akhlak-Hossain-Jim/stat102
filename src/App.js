@@ -129,8 +129,8 @@ export default function App() {
   //   },
   // };
 
-  // const [ActiveNav, setActiveNav] = useState(0);
-  const [ActiveNav, setActiveNav] = useState(14);
+  const [ActiveNav, setActiveNav] = useState(0);
+  // const [ActiveNav, setActiveNav] = useState(14);
 
   useEffect(() => {
     setProcessedDATA(DATA && process(DATA));
