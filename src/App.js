@@ -21,6 +21,7 @@ import SteamAndLeafPlot from "./Views/SteamAndLeafPlot";
 import BoxPlot from "./Views/BoxPlot";
 import Correlation from "./Views/Correlation";
 import Regression from "./Views/Regression";
+import ProbabilityDistribution from "./Views/ProbabilityDistribution";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -92,6 +93,10 @@ export default function App() {
       component: <Regression data={ProcessedDATA} />,
     },
     {
+      name: "Probability Distribution",
+      component: <ProbabilityDistribution data={ProcessedDATA} />,
+    },
+    {
       name: "Binomial Probability Distribution",
       component: <BPD />,
     },
@@ -134,7 +139,7 @@ export default function App() {
   //   },
   // };
 
-  // const [ActiveNav, setActiveNav] = useState(15);
+  // const [ActiveNav, setActiveNav] = useState(16);
   const [ActiveNav, setActiveNav] = useState(0);
 
   useEffect(() => {
@@ -145,7 +150,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 16 ? (
+      {ActiveNav !== 0 && ActiveNav < 17 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
