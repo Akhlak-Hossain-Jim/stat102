@@ -19,6 +19,7 @@ import RelativeDispersion from "./Views/RelativeDispersion";
 import Skewness from "./Views/Skewness";
 import SteamAndLeafPlot from "./Views/SteamAndLeafPlot";
 import BoxPlot from "./Views/BoxPlot";
+import Correlation from "./Views/Correlation";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -82,6 +83,10 @@ export default function App() {
       component: <BoxPlot data={ProcessedDATA} />,
     },
     {
+      name: "Correlation",
+      component: <Correlation data={ProcessedDATA} />,
+    },
+    {
       name: "Binomial Probability Distribution",
       component: <BPD />,
     },
@@ -124,8 +129,8 @@ export default function App() {
   //   },
   // };
 
-  const [ActiveNav, setActiveNav] = useState(0);
-  // const [ActiveNav, setActiveNav] = useState(13);
+  // const [ActiveNav, setActiveNav] = useState(0);
+  const [ActiveNav, setActiveNav] = useState(14);
 
   useEffect(() => {
     setProcessedDATA(DATA && process(DATA));
@@ -135,7 +140,7 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 14 ? (
+      {ActiveNav !== 0 && ActiveNav < 15 ? (
         <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
           {NAVs[ActiveNav].component}
         </ContentContainer>
