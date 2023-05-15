@@ -74,7 +74,7 @@ function Content({ title, data, title2, data2 }) {
     Table ? (
       <ContentContainer>
         <h1>
-          Finding leaner relationship between "{title}" and "{title2}":
+          Finding linear relationship between "{title}" and "{title2}":
         </h1>
         <div className="am_con">
           <p>
