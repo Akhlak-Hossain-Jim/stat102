@@ -4,6 +4,7 @@ import Summary from "../Components/Summary";
 import { ExponentialCalc } from "../Functions/math";
 import Divide from "../Components/Divide";
 import UD from "../Components/SmallOnes/UD";
+import { engVal } from "../Functions/processData";
 
 export default function ExponentialDistribution() {
   const title = "More info about Exponential Probability Distribution";
@@ -176,7 +177,7 @@ export default function ExponentialDistribution() {
                 ))
               </var>
               <var>
-                P(x &gt; {Xn}) = {Res.toFixed(4)}
+                P(x &gt; {Xn}) = {engVal(Res, "react")}
               </var>
             </div>
           ) : Type === 2 ? (
@@ -212,7 +213,7 @@ export default function ExponentialDistribution() {
                 ))
               </var>
               <var>
-                P(x &lt; {Xn}) = {Res.toFixed(4)}
+                P(x &lt; {Xn}) = {engVal(Res, "react")}
               </var>
             </div>
           ) : Type === 3 ? (
@@ -270,7 +271,7 @@ export default function ExponentialDistribution() {
                 ))
               </var>
               <var>
-                P({Xn} &lt; x &lt; {Yn}) = {Res.toFixed(4)}
+                P({Xn} &lt; x &lt; {Yn}) = {engVal(Res, "react")}
               </var>
             </div>
           ) : (

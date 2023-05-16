@@ -4,6 +4,7 @@ import Summary from "../Components/Summary";
 import { Poiss } from "../Functions/math";
 import { makeNumberArray } from "../Functions/gen";
 import Divide from "../Components/Divide";
+import { engVal } from "../Functions/processData";
 
 export default function PoissonDis() {
   const title = "More info about Poisson Distribution";
@@ -201,9 +202,8 @@ export default function PoissonDis() {
           />
         </var>
       </div>
-      {CanCalc &&
-        Res &&
-        (Type === 1 ? (
+      {CanCalc && Res && X !== ">=0" ? (
+        Type === 1 ? (
           <div className="math">
             <var>
               P(x &ge; {Xn}) = 1 -{" "}
@@ -249,7 +249,7 @@ export default function PoissonDis() {
               )
             </var>
             <var>
-              P(x &ge; {Xn}) = {Res.toFixed(4)}
+              P(x &ge; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 2 ? (
@@ -296,7 +296,7 @@ export default function PoissonDis() {
               </span>
             </var>
             <var>
-              P(x &le; {Xn}) = {Res.toFixed(4)}
+              P(x &le; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 3 ? (
@@ -332,7 +332,7 @@ export default function PoissonDis() {
               )
             </var>
             <var className="d-flex align-items-center ">
-              <span className="text-nowrap">P(x &gt; {Xn}) = 1 - </span>(s
+              <span className="text-nowrap">P(x &gt; {Xn}) = 1 - </span>(
               {React.Children.toArray(
                 XExp.map((x, i) => (
                   <>
@@ -343,7 +343,7 @@ export default function PoissonDis() {
               )
             </var>
             <var>
-              P(x &gt; {Xn}) = {Res.toFixed(4)}
+              P(x &gt; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 4 ? (
@@ -392,7 +392,7 @@ export default function PoissonDis() {
               </span>
             </var>
             <var>
-              P(x &lt; {Xn}) = {Res.toFixed(4)}
+              P(x &lt; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 5 ? (
@@ -412,7 +412,7 @@ export default function PoissonDis() {
               />
             </var>
             <var>
-              P(x={XExp}) = f({XExp}) = {Res.toFixed(4)}
+              P(x={XExp}) = f({XExp}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 6 ? (
@@ -463,7 +463,7 @@ export default function PoissonDis() {
               </span>
             </var>
             <var>
-              P({Xn} &le; x &le; {Yn}) = {Res.toFixed(4)}
+              P({Xn} &le; x &le; {Yn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 7 ? (
@@ -516,12 +516,19 @@ export default function PoissonDis() {
               </span>
             </var>
             <var>
-              P({Xn} &lt; x &lt; {Yn}) = {Res.toFixed(4)}
+              P({Xn} &lt; x &lt; {Yn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : (
           ""
-        ))}
+        )
+      ) : (
+        <>
+          <div className="math">
+            <var>P(x &ge; {Xn}) = 1</var>
+          </div>
+        </>
+      )}
     </Container>
   );
 }

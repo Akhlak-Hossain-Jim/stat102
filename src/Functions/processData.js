@@ -79,3 +79,54 @@ export function dataIsNumber(data) {
   }
   return res;
 }
+
+export function engVal(x, type = "string") {
+  if (x && !isNaN(x)) {
+    if (!Number.isInteger(x)) {
+      let arr = x.toFixed(20).replace(".", "").split("");
+      let n = arr.length;
+      let zeros = 0;
+      let p;
+      for (let i = 0; i < n; i++) {
+        if (arr[i] === "0") {
+          zeros++;
+        } else {
+          p = i;
+          break;
+        }
+      }
+      if (zeros > 4) {
+        let str = "";
+        for (let i = p; i < p + 3; i++) {
+          if (i === p) {
+            str += arr[i] + ".";
+          } else if (i === p + 2) {
+            if (Number(arr[i + 1]) < 5) {
+              str += arr[i];
+            } else {
+              let a = Number(arr[i]) + 1;
+              str += a.toString();
+            }
+          } else str += arr[i];
+        }
+        let num;
+        if (type === "react") {
+          num = (
+            <span>
+              {str}x10 <sup>-{zeros}</sup>
+            </span>
+          );
+        } else {
+          num = `${str}x10^-${zeros}`;
+        }
+        return num;
+      } else {
+        return x.toFixed(4);
+      }
+    } else {
+      return x;
+    }
+  } else {
+    return x;
+  }
+}

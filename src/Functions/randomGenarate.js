@@ -168,4 +168,46 @@ function pr(data) {
 }
 
 // pr(valn);
-pr(valp);
+// pr(valp);
+
+function engVal(x, type = "string") {
+  if (x && !isNaN(x)) {
+    if (!Number.isInteger(x)) {
+      let arr = x.toFixed(20).replace(".", "").split("");
+      let n = arr.length;
+      let zeros = 0;
+      let p;
+      for (let i = 0; i < n; i++) {
+        if (arr[i] === "0") {
+          zeros++;
+        } else {
+          p = i;
+          break;
+        }
+      }
+      if (zeros > 4) {
+        let str = "";
+        for (let i = p; i < p + 3; i++) {
+          if (i === p) {
+            str += arr[i] + ".";
+          } else str += arr[i];
+        }
+        let num;
+        if (type === "react") {
+          num = (
+            <>
+              {str}x10<sup>-{zeros}</sup>
+            </>
+          );
+        } else {
+          num = `${str}x10^-${zeros}`;
+        }
+        return num;
+      } else {
+        return x;
+      }
+    }
+  }
+}
+
+// console.log(engVal(0.0000203435353));

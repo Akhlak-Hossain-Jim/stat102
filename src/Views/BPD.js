@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Summary from "../Components/Summary";
 import { Bin } from "../Functions/math";
 import { makeNumberArray } from "../Functions/gen";
+import { engVal } from "../Functions/processData";
 
 export default function BPD() {
   const title = "More info about Binomial Probability Distribution";
@@ -237,7 +238,7 @@ export default function BPD() {
               </span>
             </var>
             <var>
-              P(x &ge; {Xn}) = {Res.toFixed(4)}
+              P(x &ge; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 2 ? (
@@ -282,7 +283,7 @@ export default function BPD() {
               </span>
             </var>
             <var>
-              P(x &le; {Xn}) = {Res.toFixed(4)}
+              P(x &le; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 3 ? (
@@ -327,7 +328,7 @@ export default function BPD() {
               </span>
             </var>
             <var>
-              P(x &gt; {Xn}) = {Res.toFixed(4)}
+              P(x &gt; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 4 ? (
@@ -372,7 +373,7 @@ export default function BPD() {
               </span>
             </var>
             <var>
-              P(x &lt; {Xn}) = {Res.toFixed(4)}
+              P(x &lt; {Xn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 5 ? (
@@ -386,7 +387,7 @@ export default function BPD() {
               </sup>
             </var>
             <var>
-              P(x={XExp}) = f({XExp}) = {Res.toFixed(4)}
+              P(x={XExp}) = f({XExp}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 6 ? (
@@ -435,7 +436,7 @@ export default function BPD() {
               </span>
             </var>
             <var>
-              P({Xn} &le; x &le; {Yn}) = {Res.toFixed(4)}
+              P({Xn} &le; x &le; {Yn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : Type === 7 ? (
@@ -484,7 +485,7 @@ export default function BPD() {
               </span>
             </var>
             <var>
-              P({Xn} &lt; x &lt; {Yn}) = {Res.toFixed(4)}
+              P({Xn} &lt; x &lt; {Yn}) = {engVal(Res, "react")}
             </var>
           </div>
         ) : (
