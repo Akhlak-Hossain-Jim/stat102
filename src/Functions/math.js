@@ -77,14 +77,13 @@ export function NormalDis(avg, x, SD, calc = "s", y = 0) {
   if (avg && x && SD && calc) {
     let res;
     if (calc === "s") {
-      let pow = -(1 / 2) * (((x - avg) / SD) * ((x - avg) / SD));
-      let a =
-        (1 / (Math.sqrt(2 * Math.PI) * (SD * SD))) * Math.pow(Math.E, pow);
+      let pow = -0.5 * (((x - avg) / SD) * ((x - avg) / SD));
+      let a = (1 / (SD * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, pow);
       res = a;
       return res;
     } else if (calc === "l") {
-      let pow = (-1 / 2) * ((x - avg) / SD) ** 2;
-      let a = (1 / (Math.sqrt(2 * Math.PI) * SD ** 2)) * Math.pow(Math.E, pow);
+      let pow = -0.5 * (((x - avg) / SD) * ((x - avg) / SD));
+      let a = (1 / (SD * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, pow);
       // console.log(a.toFixed(16));
       res = 1 - a;
       return res;

@@ -39,7 +39,7 @@ export default function NormalDistribution() {
   const [Res, setRes] = useState();
   const [ValZ, setValZ] = useState();
   const [ValYZ, setValYZ] = useState();
-  const [ActiveNav, setActiveNav] = useState(1);
+  const [ActiveNav, setActiveNav] = useState(0);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -83,7 +83,7 @@ export default function NormalDistribution() {
     }
   }
 
-  console.log(ValZ, Xn, Res);
+  console.log(Xn, Res);
 
   return (
     <Container>
@@ -155,42 +155,31 @@ export default function NormalDistribution() {
           className={`${ActiveNav === 0 ? "active" : ""}`}
           onClick={() => setActiveNav(0)}
         >
-          With function
+          Standard Normal(z)
         </button>
         <button
           className={`${ActiveNav === 1 ? "active" : ""}`}
           onClick={() => setActiveNav(1)}
         >
-          With Z
+          Normal
         </button>
       </nav>
 
-      {ActiveNav === 0 ? (
+      {ActiveNav === 1 ? (
         <>
-          Will be added soon.
-          {/* <div className="math">
+          <div className="math">
             <var className="d-flex align-items-center">
-              f(x) ={" "}
-              <Divide
-                a={<>1</>}
-                b={
-                  <>
-                    &radic;(2&pi;) &sigma;<sup>2</sup>
-                  </>
-                }
-              />{" "}
+              f(x) = <Divide a={<>1</>} b={<>&sigma;&radic;2&pi;</>} />{" "}
               <span>
-                e pow(
+                e
                 <sup>
-                  -<Divide a={<>1</>} b={<>2</>} />(
-                  <Divide a={<>x - &micro;</>} b={<>&sigma;</>} />)<sup>2</sup>
+                  -(x - &micro;)<sup>2</sup>/2&sigma;<sup>2</sup>
                 </sup>
-                )
               </span>
             </var>
           </div>
-
-          {CanCalc &&
+          Will be adding soon.
+          {/* {CanCalc &&
             Res &&
             (Type === 1 ? (
               <div className="math">
@@ -214,11 +203,11 @@ export default function NormalDistribution() {
               ""
             ))} */}
         </>
-      ) : ActiveNav === 1 ? (
+      ) : ActiveNav === 0 ? (
         <>
           <div className="math">
             <var>
-              z = <Divide a={<>x - &micro;</>} b={<>&sigma;</>} />) =
+              z = <Divide a={<>x - &micro;</>} b={<>&sigma;</>} />
             </var>
           </div>
 
@@ -304,13 +293,13 @@ export default function NormalDistribution() {
                 {ProbabilityByZ(ValYZ) && ProbabilityByZ(ValZ) && (
                   <var>
                     P({ValZ.toFixed(2)} &lt; z &lt; {ValYZ.toFixed(2)}) ={" "}
-                    {ProbabilityByZ(ValZ)} - {ProbabilityByZ(ValYZ)}
+                    {ProbabilityByZ(ValYZ)} - {ProbabilityByZ(ValZ)}
                   </var>
                 )}
                 {ProbabilityByZ(ValYZ) && ProbabilityByZ(ValZ) && (
                   <var>
                     P({ValZ.toFixed(2)} &lt; z &lt; {ValYZ.toFixed(2)}) ={" "}
-                    {ProbabilityByZ(ValZ) - ProbabilityByZ(ValYZ)}
+                    {ProbabilityByZ(ValYZ) - ProbabilityByZ(ValZ)}
                   </var>
                 )}
               </div>

@@ -30,8 +30,8 @@ export default function ExponentialDistribution() {
     </>
   );
 
-  const [Avg, setAvg] = useState(8);
-  const [X, setX] = useState("<6");
+  const [Avg, setAvg] = useState();
+  const [X, setX] = useState();
   const [Xn, setXn] = useState();
   const [Yn, setYn] = useState();
   const [CanCalc, setCanCalc] = useState(false);
