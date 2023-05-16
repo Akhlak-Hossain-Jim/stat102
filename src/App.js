@@ -23,6 +23,7 @@ import Correlation from "./Views/Correlation";
 import Regression from "./Views/Regression";
 import ProbabilityDistribution from "./Views/ProbabilityDistribution";
 import NormalDistribution from "./Views/NormalDistribution";
+import ExponentialDistribution from "./Views/ExponentialDistribution";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -109,6 +110,10 @@ export default function App() {
       name: "Normal Distribution",
       component: <NormalDistribution />,
     },
+    {
+      name: "Exponential Distribution",
+      component: <ExponentialDistribution />,
+    },
   ];
 
   // const NAVsP = {
@@ -144,7 +149,7 @@ export default function App() {
   //   },
   // };
 
-  // const [ActiveNav, setActiveNav] = useState(19);
+  // const [ActiveNav, setActiveNav] = useState(20);
   const [ActiveNav, setActiveNav] = useState(0);
 
   useEffect(() => {
