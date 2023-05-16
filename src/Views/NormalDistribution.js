@@ -29,9 +29,9 @@ export default function NormalDistribution() {
     </>
   );
 
-  const [Avg, setAvg] = useState(15015);
-  const [StdDev, setStdDev] = useState(3540);
-  const [X, setX] = useState("<18000");
+  const [Avg, setAvg] = useState();
+  const [StdDev, setStdDev] = useState();
+  const [X, setX] = useState();
   const [Xn, setXn] = useState();
   const [Yn, setYn] = useState();
   const [CanCalc, setCanCalc] = useState(false);
