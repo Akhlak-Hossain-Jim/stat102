@@ -126,3 +126,20 @@ export function ProbabilityByZ(z) {
     return res;
   } else return undefined;
 }
+
+export function ExponentialCalc(x, mean, type = "s", y) {
+  if (x && mean && !isNaN(x) && !isNaN(mean)) {
+    let res;
+    let le = Math.pow(Math.E, -(x / mean));
+    if (type === "s") {
+      res = 1 - le;
+    } else if (type === "l") {
+      res = 1 - (1 - le);
+    } else if (type === "b" && y && !isNaN(y)) {
+      let xr = 1 - le;
+      let yr = 1 - Math.pow(Math.E, -(y / mean));
+      res = xr - yr;
+    }
+    return res;
+  } else return undefined;
+}
