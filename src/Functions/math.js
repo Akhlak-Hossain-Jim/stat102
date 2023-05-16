@@ -1,3 +1,8 @@
+import {
+  ValueOfNormByZNegative,
+  ValueOfNormByZPositive,
+} from "../data/ValueFromZ";
+
 export function nCr(n, r) {
   return fact(n) / (fact(r) * fact(n - r));
 }
@@ -65,5 +70,59 @@ export function Poiss(avg, x, mode = "s", calc = "s") {
       res = c / fact;
     }
     return 1 - res;
+  } else return undefined;
+}
+
+export function NormalDis(avg, x, SD, calc = "s", y = 0) {
+  if (avg && x && SD && calc) {
+    let res;
+    if (calc === "s") {
+      let pow = -(1 / 2) * (((x - avg) / SD) * ((x - avg) / SD));
+      let a =
+        (1 / (Math.sqrt(2 * Math.PI) * (SD * SD))) * Math.pow(Math.E, pow);
+      res = a;
+      return res;
+    } else if (calc === "l") {
+      let pow = (-1 / 2) * ((x - avg) / SD) ** 2;
+      let a = (1 / (Math.sqrt(2 * Math.PI) * SD ** 2)) * Math.pow(Math.E, pow);
+      // console.log(a.toFixed(16));
+      res = 1 - a;
+      return res;
+    } else if (calc === "b" && y) {
+      let a, b;
+      if (x > y) {
+        a = x;
+        b = y;
+      } else {
+        b = x;
+        a = y;
+      }
+      let powA = (-1 / 2) * ((a - avg) / SD) ** 2;
+      let powB = (-1 / 2) * ((b - avg) / SD) ** 2;
+      let ac =
+        (1 / (Math.sqrt(2 * Math.PI) * SD ** 2)) * Math.pow(Math.E, powA);
+      let bc =
+        (1 / (Math.sqrt(2 * Math.PI) * SD ** 2)) * Math.pow(Math.E, powB);
+      res = ac - bc;
+      return res;
+    } else if (calc === "z") {
+      res = (x - avg) / SD;
+      return res;
+    }
+  } else return undefined;
+}
+
+export function ProbabilityByZ(z) {
+  if (z && !isNaN(z)) {
+    let res;
+    let a = Math.abs(z).toFixed(2).replace(".", "");
+    if (z >= 0) {
+      res = ValueOfNormByZPositive[a];
+      console.log(a, z.toFixed(2), res);
+    } else {
+      res = ValueOfNormByZNegative[a];
+      console.log(a, z, res);
+    }
+    return res;
   } else return undefined;
 }
