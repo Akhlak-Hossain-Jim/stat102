@@ -22,6 +22,7 @@ import BoxPlot from "./Views/BoxPlot";
 import Correlation from "./Views/Correlation";
 import Regression from "./Views/Regression";
 import ProbabilityDistribution from "./Views/ProbabilityDistribution";
+import NormalDistribution from "./Views/NormalDistribution";
 
 export default function App() {
   const [DATA, setDATA] = useState();
@@ -104,6 +105,10 @@ export default function App() {
       name: "Poisson Distribution",
       component: <PoissonDis />,
     },
+    {
+      name: "Normal Distribution",
+      component: <NormalDistribution />,
+    },
   ];
 
   // const NAVsP = {
@@ -139,7 +144,7 @@ export default function App() {
   //   },
   // };
 
-  // const [ActiveNav, setActiveNav] = useState(16);
+  // const [ActiveNav, setActiveNav] = useState(19);
   const [ActiveNav, setActiveNav] = useState(0);
 
   useEffect(() => {
