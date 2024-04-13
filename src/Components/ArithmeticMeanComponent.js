@@ -153,7 +153,7 @@ const Container = styled.div`
       padding: 6px 0;
       display: inline;
       width: max-content;
-      border-bottom: 1px dashed var(--green);
+      border-bottom: 1px dashed var(--green-2);
     }
     & > strong {
       text-decoration: underline;
