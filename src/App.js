@@ -31,123 +31,111 @@ export default function App() {
 
   const NAVs = [
     {
-      name: "Random Data Generator",
-      component: <RandomGen />,
-    },
-    {
       name: "Frequency Table",
       component: <FrequencyTable data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Graphical Presentation",
       component: <HistoGram data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Arithmetic Mean",
       component: <ArithmeticMean data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Median",
       component: <Median data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Mode",
       component: <Mode data={ProcessedDATA} />,
+      type: "normal",
     },
     {
-      name: "GeoMetric Mean",
+      name: "Geometric Mean",
       component: <GeometricMean data={ProcessedDATA} />,
+      type: "gm",
     },
     {
       name: "Harmonic Mean",
       component: <HarmonicMean data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Quartiles",
       component: <Quartiles data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Absolute type Dispersion",
       component: <AbsoluteDispersion data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Relative type Dispersion",
       component: <RelativeDispersion data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Measures of Skewness",
       component: <Skewness data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Stem and Leaf Plot",
       component: <SteamAndLeafPlot data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Box Plot",
       component: <BoxPlot data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Correlation",
       component: <Correlation data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Regression, Error & Co-efficient",
       component: <Regression data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Probability Distribution",
       component: <ProbabilityDistribution data={ProcessedDATA} />,
+      type: "normal",
     },
     {
       name: "Binomial Probability Distribution",
       component: <BPD />,
+      type: "normal",
     },
     {
       name: "Poisson Distribution",
       component: <PoissonDis />,
+      type: "normal",
     },
     {
       name: "Normal Distribution",
       component: <NormalDistribution />,
+      type: "normal",
     },
     {
       name: "Exponential Distribution",
       component: <ExponentialDistribution />,
+      type: "normal",
+    },
+    {
+      name: "Random Data Generator",
+      component: <RandomGen />,
+      type: "normal",
     },
   ];
-
-  // const NAVsP = {
-  //   frequencyTable: {
-  //     name: "Frequency Table",
-  //     handle: "frequencyTable",
-  //     component: <FrequencyTable data={ProcessedDATA} />,
-  //   },
-  //   graphicalPresentation: {
-  //     name: "Graphical Presentation",
-  //     handle: "graphicalPresentation",
-  //     component: <HistoGram data={ProcessedDATA} />,
-  //   },
-  //   as: {
-  //     name: "Arithmetic Mean",
-  //     component: <ArithmeticMean data={ProcessedDATA} />,
-  //   },
-  //   has: {
-  //     name: "Median",
-  //     component: <Median data={ProcessedDATA} />,
-  //   },
-  //   nas: {
-  //     name: "Mode",
-  //     component: <Mode data={ProcessedDATA} />,
-  //   },
-  //   ljas: {
-  //     name: "GeoMetric Mean",
-  //     component: <GeometricMean data={ProcessedDATA} />,
-  //   },
-  //   al: {
-  //     name: "Harmonic Mean",
-  //     component: <HarmonicMean data={ProcessedDATA} />,
-  //   },
-  // };
 
   // const [ActiveNav, setActiveNav] = useState(20);
   const [ActiveNav, setActiveNav] = useState(0);
@@ -160,13 +148,17 @@ export default function App() {
   return (
     <Container>
       <AppSidebar navArray={NAVs} cNav={ActiveNav} setCNav={setActiveNav} />
-      {ActiveNav !== 0 && ActiveNav < 17 ? (
-        <ContentContainer tab={ActiveNav} pushData={setDATA} navArray={NAVs}>
+      {
+        <ContentContainer
+          tab={ActiveNav}
+          pushData={setDATA}
+          navArray={NAVs}
+          form={ActiveNav < 16}
+          type={NAVs[ActiveNav].type}
+        >
           {NAVs[ActiveNav].component}
         </ContentContainer>
-      ) : (
-        NAVs[ActiveNav].component
-      )}
+      }
     </Container>
   );
 }
@@ -176,13 +168,20 @@ const Container = styled.div`
   height: 100dvh;
   overflow-y: hidden;
   margin: 0 auto;
+  padding: 12px;
   display: grid;
+  gap: 12px;
   grid-template-columns: 3fr 9fr;
-  @media (max-width: 548px) {
-    grid-template-columns: 1fr;
-  }
   & > * {
     height: 100%;
     overflow-y: auto;
+  }
+  @media (max-width: 548px) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    & > * {
+      height: max-content;
+    }
   }
 `;
