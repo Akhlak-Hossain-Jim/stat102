@@ -325,6 +325,10 @@ const Container = styled.main`
       font-weight: 500;
       display: inline;
       margin-right: auto;
+      background-color: var(--green-2);
+      color: var(--light);
+      box-shadow: var(--dark-shadow-out);
+      border-radius: 16px;
     }
   }
   & > nav {
