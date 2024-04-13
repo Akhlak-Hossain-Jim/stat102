@@ -12,7 +12,7 @@ export default function AppSidebar({ navArray, cNav, setCNav }) {
     <>
       <Space>
         <a
-          className="logo img"
+          className="logo"
           href="http://ahjim.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -22,7 +22,7 @@ export default function AppSidebar({ navArray, cNav, setCNav }) {
       </Space>
       <Container className={HamStat ? "active" : ""}>
         <a
-          className="logo img"
+          className="logo"
           href="http://ahjim.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -48,29 +48,38 @@ export default function AppSidebar({ navArray, cNav, setCNav }) {
 }
 
 const Container = styled.aside`
-  border-right: 1px solid gray;
+  // border-right: 1px solid gray;
   padding: 24px;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--dark-shadow-out);
+  border-radius: 16px;
   & > .logo {
     width: 100px;
-    height: 46px;
-    padding-bottom: 46px;
+    aspect-ratio: 51/25;
+    padding-bottom: 16px;
     margin: 0 auto;
-    overflow: hidden;
-    display: flex;
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      opacity: 1;
+      /* filter: drop-shadow(var(--drop-shadow)); */
+    }
   }
   & > button.nav_item {
     border: none;
     outline: none;
     background: transparent;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     text-align: start;
-    color: var(--green);
+    color: var(--dark);
     padding: 12px 0;
+    font-weight: 600;
     cursor: pointer;
     &.active {
-      color: var(--light);
+      color: var(--green-2);
     }
   }
 
@@ -79,10 +88,15 @@ const Container = styled.aside`
     &.active {
       position: absolute;
       display: flex;
-      background-color: var(--dark);
+      box-shadow: none;
+      background-color: var(--light);
       height: 100dvh;
+      width: 100%;
       overflow-y: auto;
       z-index: 500;
+      & > .logo {
+        opacity: 0;
+      }
     }
   }
 `;
@@ -92,19 +106,19 @@ const Ham = styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: transparent;
+  background-color: var(--light);
   border: none;
   outline: none;
   box-shadow: var(--dark-shadow-out);
   padding: 24px 10px;
-  border-radius: 50%;
+  border-radius: 8px;
   height: max-content !important;
   z-index: 501;
   @media (min-width: 549px) {
     display: none;
   }
   & > span {
-    background-color: var(--green);
+    background-color: var(--green-2);
     width: 28px;
     height: 3px;
     position: relative;
@@ -113,7 +127,7 @@ const Ham = styled.button`
       content: "";
       width: 100%;
       height: 100%;
-      background-color: var(--green);
+      background-color: var(--green-2);
       position: absolute;
       transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
       transform-origin: center;
@@ -141,13 +155,22 @@ const Ham = styled.button`
 `;
 
 const Space = styled.div`
-  padding: 24px;
+  padding: 0px 24px;
   display: flex;
   flex-direction: column;
-  .logo {
+  & > .logo {
     width: 100px;
-    aspect-ratio: 100/46;
-    margin: 0 auto 24px;
+    aspect-ratio: 51/25;
+    padding-bottom: 16px;
+    margin: 0 auto;
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      opacity: 1;
+      /* filter: drop-shadow(var(--drop-shadow)); */
+    }
   }
   @media (min-width: 549px) {
     display: none;
