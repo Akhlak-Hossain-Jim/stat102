@@ -263,7 +263,7 @@ const ContentContainer = styled.div`
       padding: 6px 0;
       display: inline;
       width: max-content;
-      border-bottom: 1px dashed var(--green);
+      border-bottom: 1px dashed var(--green-2);
     }
     & > strong {
       text-decoration: underline;
@@ -348,14 +348,14 @@ const BoxPlotContainer = styled.div`
         transform: translateY(-50%);
       }
       & > .tail {
-        border-top: 1px dashed var(--light-green);
+        border-top: 1px dashed var(--green-2);
       }
       & > .box {
         position: absolute;
         height: 80%;
         top: 50%;
         transform: translateY(-50%);
-        border: 1px solid var(--light-green);
+        border: 1px solid var(--green-2);
       }
     }
     &-label {
@@ -368,7 +368,7 @@ const BoxPlotContainer = styled.div`
         height: 38px;
         width: (120px, 100%);
         min-width: 120px;
-        border-top: 1px solid var(--light);
+        border-top: 1px solid var(--dark);
         &:last-child {
           /* text-align: end;
           flex: 0; */
@@ -391,7 +391,7 @@ const BoxPlotContainer = styled.div`
             height: 20px;
             width: 1px;
             transform: translateX(-50%);
-            background: var(--light);
+            background: var(--dark);
             bottom: 100%;
           }
         }
