@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BsFiles } from "react-icons/bs";
 import styled from "styled-components";
+import {
+  RandomGenerate,
+  makeNumberArray,
+  makeStringArray,
+  profitLoss,
+} from "../Functions/randomGen";
 
 export default function RandomGen() {
   const [Title, setTitle] = useState();
@@ -18,47 +24,7 @@ export default function RandomGen() {
 
   const CalcOpt = ["Geometric Mean", "Others"];
   const DataTypeNormal = ["Numerical", "Categorical"];
-  const DataTypeGM = ["Value with time interval", "% Profit/Lose Value"];
-
-  function makeNumberArray(str) {
-    let arr = str
-      .split("-")
-      .map((el) => el.replaceAll(" ", ""))
-      .map((el) => Number(el));
-    let array = [];
-    for (let i = arr[0]; i < arr[1]; i++) {
-      array.push(i);
-    }
-    return array;
-  }
-
-  function makeStringArray(str) {
-    let arr = str
-      .split(",")
-      .map((el) => el.replaceAll(" ", ""))
-      .filter((el) => el !== "");
-    return arr;
-  }
-
-  function RandomGen(n, arr) {
-    let array = [];
-    for (let i = 0; i < n; i++) {
-      array.push(arr[Math.floor(Math.random() * arr.length)]);
-    }
-    return array.join(", ");
-  }
-
-  function profitLose(n) {
-    let arr = [];
-    for (let i = 0; i < n; i++) {
-      let a = Math.round(Math.random() * 20) + 1;
-      let i = Math.round(Math.random() * 2);
-      let b = i === 1 ? "Profit" : "Lose";
-      let c = `${a}% ${b}`;
-      arr.push(c);
-    }
-    return arr.join(", ");
-  }
+  const DataTypeGM = ["Value with time interval", "% Profit/Loss Value"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,12 +37,12 @@ export default function RandomGen() {
             (Math.random() * 1000).toFixed(2),
             Math.round(Math.random() * 10) + 1,
           ].join(", ")
-        : Calc === "Geometric Mean" && DataType === "% Profit/Lose Value"
-        ? profitLose(Length)
+        : Calc === "Geometric Mean" && DataType === "% Profit/Loss Value"
+        ? profitLoss(Length)
         : Calc === "Others" && DataType === "Numerical"
-        ? RandomGen(Length, makeNumberArray(Range))
+        ? RandomGenerate(Length, makeNumberArray(Range))
         : Calc === "Others" && DataType === "Categorical"
-        ? RandomGen(Length, makeStringArray(RangeStr))
+        ? RandomGenerate(Length, makeStringArray(RangeStr))
         : "";
     string += dt;
     setData(string);
@@ -238,6 +204,10 @@ const Container = styled.main`
         padding: 12px 24px;
         font-size: 1.1rem;
         font-weight: 500;
+        background-color: var(--green-2);
+        color: var(--light);
+        box-shadow: var(--dark-shadow-out);
+        border-radius: 16px;
       }
     }
   }
