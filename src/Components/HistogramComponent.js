@@ -170,8 +170,8 @@ const Container = styled.div`
     padding: 24px;
     padding-right: 0;
     & > .histogram_box {
-      border-left: 1px solid var(--light);
-      border-bottom: 1px solid var(--light);
+      border-left: 1px solid var(--dark);
+      border-bottom: 1px solid var(--dark);
       margin-left: 24px;
       position: relative;
       height: 400px;
@@ -188,7 +188,7 @@ const Container = styled.div`
           transform: translateY(-50%);
           width: 6px;
           height: 2px;
-          background-color: var(--light);
+          background-color: var(--dark);
         }
       }
       & > .bar_box {
