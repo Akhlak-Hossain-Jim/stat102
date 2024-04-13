@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 *,
 *::after,
@@ -8,42 +8,45 @@
   box-sizing: border-box;
   transition: all 300ms ease-in-out;
   scroll-behavior: smooth;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 *::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   border-radius: 4px;
-  color: var(--green);
+  color: var(--green-2);
 }
 *::-webkit-scrollbar-thumb {
-  border: 5px solid var(--green);
+  border: 5px solid var(--green-2);
   border-radius: 4px;
   background: transparent;
 }
 
 :root {
-  --green: #0b574f;
+  --green-1: #0b574f;
+  --green-2: #005a34;
+  --green-3: #115d40;
   --green-shadow: 5px 5px 13px #042320, -5px -5px 13px #042320;
   --light-green: #16a085;
-  --dark: #1f1f1f;
-  --dark-shadow-out: 5px 5px 13px #0f0f0f, -5px -5px 13px #2f2f2f;
-  --dark-shadow-in: inset 5px 5px 13px #0f0f0f, inset -5px -5px 13px #2f2f2f;
-  --light: #f1f1f1;
+  --dark: #111111;
+  --dark-shadow-out: 0.3rem 0.3rem 0.6rem #c8d0e7,
+    -0.2rem -0.2rem 0.5rem #ffffff;
+  --dark-shadow-in: inset 0.2rem 0.2rem 0.5rem #c8d0e7,
+    inset -0.2rem -0.2rem 0.5rem #ffffff;
+  --drop-shadow: 2px 2px 1px var(--green-3);
+  --light: #e4ebf5;
 }
 
 body {
-  background-color: var(--dark);
-  color: var(--light);
+  background-color: var(--light);
+  color: var(--dark);
 }
 
 .img {
-  position: relative;
   & > img {
-    position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 }
@@ -53,16 +56,23 @@ td {
   text-align: center;
 }
 table {
-  background-color: var(--light);
+  background-color: var(--dark);
 }
 th,
 td {
-  background-color: var(--dark);
+  background-color: var(--light);
   padding: 8px;
+  color: var(--dark);
 }
 
 input {
-  accent-color: var(--green);
+  accent-color: var(--green-2);
+}
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 .field {
   display: flex;
@@ -85,9 +95,13 @@ input {
     font-size: 1.2rem;
     background-color: transparent;
     box-shadow: var(--dark-shadow-out);
-    color: var(--light);
+    color: var(--dark);
     & > option {
-      background: var(--dark);
+      background: var(--light);
+      color: var(--dark);
+    }
+    &:focus {
+      box-shadow: var(--dark-shadow-in);
     }
   }
 }
