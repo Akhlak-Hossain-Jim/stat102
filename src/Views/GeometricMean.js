@@ -25,8 +25,8 @@ const MeanContent = ({ title, data }) => {
         /[0-9]/.test(el) &&
         (el.includes("profit") ||
           el.includes("Profit") ||
-          el.includes("lose") ||
-          el.includes("Lose"))
+          el.includes("loss") ||
+          el.includes("Loss"))
       ) {
         stillDoable = true;
       } else {
@@ -57,7 +57,7 @@ const MeanContent = ({ title, data }) => {
               accumulated: 100 + Number(array[0]),
             });
             break;
-          case "lose":
+          case "loss":
             arr.push(100 - Number(array[0]));
             arr2.push({
               iVal: array.join("% "),
@@ -170,7 +170,7 @@ const MeanContent = ({ title, data }) => {
               <table>
                 <thead>
                   <tr>
-                    <td>Profit/Lose</td>
+                    <td>Profit/Loss</td>
                     <td>Accumulated Values</td>
                   </tr>
                 </thead>
@@ -243,7 +243,7 @@ const MeanContent = ({ title, data }) => {
                     100 >
                   0
                     ? "profit"
-                    : "lose"}{" "}
+                    : "Loss"}{" "}
                   on those reported years.
                 </p>
               </div>
